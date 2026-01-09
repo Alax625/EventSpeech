@@ -15,14 +15,30 @@
         .carousel-slide { min-width: 100%; }
         /* 统一标题居中 */
         .section-title { text-align: center !important; }
-        /* YouTube视频正常尺寸样式 */
-        .youtube-container {
-            max-width: 1200px;  /* 大屏下的正常宽度，可根据需要调整为1400px/1600px */
-            min-height: 675px;  /* 16:9比例下对应1200px宽度的高度，保证视频不扁 */
-            margin: 0 auto;     /* 居中显示 */
-            width: 100%;        /* 小屏幕自适应 */
-        }
-
+        /* 修复视频铺满问题的样式 */
+.youtube-container {
+    max-width: 1200px; /* 正常尺寸宽度 */
+    margin: 0 auto;    /* 居中 */
+    width: 100%;
+}
+/* 强制视频容器保持16:9比例，同时让iframe铺满 */
+.youtube-video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9比例的固定高度（100%/16*9） */
+    height: 0;
+    overflow: hidden;
+    border-radius: 0.5rem; /* 保持原有圆角 */
+    background: #e5e7eb; /* 背景色和之前一致 */
+}
+.youtube-video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0; /* 去除默认边框 */
+}
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 max-w-5xl mx-auto px-4 py-8">
@@ -64,14 +80,15 @@
             <img src="Images/Method.png" alt="Method Framework" class="w-full rounded">
             <p class="mt-2 text-sm text-gray-600 italic text-center">Figure 1: Framework of our proposed method. The pipeline consists of [component 1], [component 2], and [component 3], which jointly achieve [goal].</p>
         </div>
-    </section>
-
-    <!-- 5. YouTube视频 (调整为正常尺寸) -->
+    
+        <!-- 5. YouTube Video (修复视频铺满问题) -->
 <section class="mb-10">
     <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">YouTube Video</h2>
-    <!-- 核心修改：添加youtube-container类，保留原有aspect比例和样式 -->
-    <div class="youtube-container aspect-w-16 aspect-h-9 bg-gray-200 rounded-lg overflow-hidden">
-        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
+    <div class="youtube-container">
+        <!-- 使用自定义wrapper强制视频比例+铺满 -->
+        <div class="youtube-video-wrapper">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
     </div>
 </section>
 
