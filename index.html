@@ -39,6 +39,12 @@
     height: 100%;
     border: 0; /* 去除默认边框 */
 }
+.btn-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    display: inline-block;
+}
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 max-w-5xl mx-auto px-4 py-8">
@@ -47,19 +53,29 @@
         <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Your Anonymous Paper Title Here</h1>
     </section>
 
-    <!-- 备选方案：字体图标版 -->
+    <!-- 按钮区域代码 -->
 <section class="mb-10 flex flex-wrap gap-3 justify-center">
+    <!-- arXiv按钮（匹配你提供的图标样式） -->
     <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
-        <span class="font-bold text-lg">arXiv</span> <!-- 模拟arXiv logo样式 -->
+        <img src="https://cdn-icons-png.flaticon.com/128/3059/3059890.png" class="btn-icon" alt="arXiv logo">
         arXiv
     </a>
+    <!-- Code按钮（GitHub logo） -->
     <button class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
-        <i class="fa-brands fa-github"></i> <!-- GitHub字体图标 -->
+        <img src="https://cdn-icons-png.flaticon.com/128/25/25231.png" class="btn-icon" alt="GitHub logo">
         Code - Coming Soon...
     </button>
-    <!-- YouTube/Dataset按钮不变 -->
+    <!-- YouTube按钮（YouTube logo） -->
+    <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
+        <img src="https://cdn-icons-png.flaticon.com/128/1384/1384060.png" class="btn-icon" alt="YouTube logo">
+        YouTube
+    </a>
+    <!-- Dataset按钮（数据库标志） -->
+    <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
+        <img src="https://cdn-icons-png.flaticon.com/128/10344/10344173.png" class="btn-icon" alt="Dataset logo">
+        Dataset
+    </a>
 </section>
-
 
     <!-- 3. Abstract -->
     <section class="mb-10">
