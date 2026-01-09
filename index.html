@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paper Demo Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 音频控件样式适配 */
+        audio { width: 100%; max-width: 300px; }
+        /* 轮播图基础样式 */
+        .carousel-container { position: relative; overflow: hidden; }
+        .carousel-slides { display: flex; transition: transform 0.5s ease; }
+        .carousel-slide { min-width: 100%; }
+        /* 统一标题居中 */
+        .section-title { text-align: center !important; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 max-w-5xl mx-auto px-4 py-8">
+    <!-- 1. 论文标题 -->
+    <section class="mb-8 text-center">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Your Anonymous Paper Title Here</h1>
+    </section>
+
+    <!-- 2. 功能按钮 (修改后：深灰色+指定图标) -->
+    <section class="mb-10 flex flex-wrap gap-3 justify-center">
+        <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
+            <i class="fa-solid fa-file-pdf"></i> arXiv
+        </a>
+        <button class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
+            <i class="fa-solid fa-arrows-rotate"></i> Code - Coming Soon...
+        </button>
+        <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
+            <i class="fa-brands fa-youtube"></i> YouTube
+        </a>
+        <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
+            <i class="fa-solid fa-database"></i> Dataset
+        </a>
+    </section>
+
+    <!-- 3. Abstract -->
+    <section class="mb-10">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Abstract</h2>
+        <p class="text-gray-700 leading-relaxed">
+            This paper presents a novel approach for [your research topic]. Our method addresses [key problem] by [core innovation]. 
+            Experimental results on [dataset] demonstrate that our approach outperforms existing baselines in [evaluation metrics]. 
+            We also provide extensive ablation studies to validate the effectiveness of each component in our framework.
+        </p>
+    </section>
+
+    <!-- 4. Method -->
+    <section class="mb-10">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Method</h2>
+        <div class="bg-white p-4 rounded-lg shadow-sm">
+            <img src="https://via.placeholder.com/800x400?text=Method+Framework+Diagram" alt="Method Framework" class="w-full rounded">
+            <p class="mt-2 text-sm text-gray-600 italic text-center">Figure 1: Framework of our proposed method. The pipeline consists of [component 1], [component 2], and [component 3], which jointly achieve [goal].</p>
+        </div>
+    </section>
+
+    <!-- 5. YouTube视频 -->
+    <section class="mb-10">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">YouTube Video</h2>
+        <div class="aspect-w-16 aspect-h-9 bg-gray-200 rounded-lg overflow-hidden">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
+        </div>
+    </section>
+
+    <!-- 6. Demo (Sample 1-4) -->
+    <section class="mb-10">
+        <h2 class="text-2xl font-bold mb-6 text-gray-900 section-title">Demo</h2>
+        
+        <!-- Sample 1 -->
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-3 section-title">Sample 1</h3>
+            <!-- 第一排 4个样本 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                <!-- GT -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">GT</h4>
+                    <img src="https://i.imgur.com/your-gt1-img.png" alt="GT Spectrogram 1" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample1-gt.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- Ours -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">Ours</h4>
+                    <img src="https://i.imgur.com/your-ours1-img.png" alt="Ours Spectrogram 1" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample1-ours.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- VALL-E2 -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">VALL-E2</h4>
+                    <img src="https://i.imgur.com/your-vall-e2-1-img.png" alt="VALL-E2 Spectrogram 1" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample1-vall-e2.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- MATCHA-TTS -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">MATCHA-TTS</h4>
+                    <img src="https://i.imgur.com/your-matcha-tts1-img.png" alt="MATCHA-TTS Spectrogram 1" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample1-matcha-tts.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+            <!-- 第二排 4个样本 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- MMAudio+AS -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">MMAudio+AS</h4>
+                    <img src="https://i.imgur.com/your-mmaudio-as1-img.png" alt="MMAudio+AS Spectrogram 1" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample1-mmaudio-as.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- Diff-Foley+AS -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">Diff-Foley+AS</h4>
+                    <img src="https://i.imgur.com/your-diff-foley-as1-img.png" alt="Diff-Foley+AS Spectrogram 1" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample1-diff-foley-as.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- VTS -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">VTS</h4>
+                    <img src="https://i.imgur.com/your-vts1-img.png" alt="VTS Spectrogram 1" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample1-vts.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- VTS+VE -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">VTS+VE</h4>
+                    <img src="https://i.imgur.com/your-vts-ve1-img.png" alt="VTS+VE Spectrogram 1" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample1-vts-ve.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sample 2 -->
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-3 section-title">Sample 2</h3>
+            <!-- 第一排 4个样本 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                <!-- GT -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">GT</h4>
+                    <img src="https://i.imgur.com/your-gt2-img.png" alt="GT Spectrogram 2" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample2-gt.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- Ours -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">Ours</h4>
+                    <img src="https://i.imgur.com/your-ours2-img.png" alt="Ours Spectrogram 2" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample2-ours.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- VALL-E2 -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">VALL-E2</h4>
+                    <img src="https://i.imgur.com/your-vall-e2-2-img.png" alt="VALL-E2 Spectrogram 2" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample2-vall-e2.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- MATCHA-TTS -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">MATCHA-TTS</h4>
+                    <img src="https://i.imgur.com/your-matcha-tts2-img.png" alt="MATCHA-TTS Spectrogram 2" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample2-matcha-tts.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+            <!-- 第二排 4个样本 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- MMAudio+AS -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">MMAudio+AS</h4>
+                    <img src="https://i.imgur.com/your-mmaudio-as2-img.png" alt="MMAudio+AS Spectrogram 2" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample2-mmaudio-as.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- Diff-Foley+AS -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">Diff-Foley+AS</h4>
+                    <img src="https://i.imgur.com/your-diff-foley-as2-img.png" alt="Diff-Foley+AS Spectrogram 2" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample2-diff-foley-as.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- VTS -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">VTS</h4>
+                    <img src="https://i.imgur.com/your-vts2-img.png" alt="VTS Spectrogram 2" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample2-vts.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- VTS+VE -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">VTS+VE</h4>
+                    <img src="https://i.imgur.com/your-vts-ve2-img.png" alt="VTS+VE Spectrogram 2" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample2-vts-ve.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sample 3 -->
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-3 section-title">Sample 3</h3>
+            <!-- 第一排 4个样本 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                <!-- GT -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">GT</h4>
+                    <img src="https://i.imgur.com/your-gt3-img.png" alt="GT Spectrogram 3" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample3-gt.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- Ours -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">Ours</h4>
+                    <img src="https://i.imgur.com/your-ours3-img.png" alt="Ours Spectrogram 3" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample3-ours.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- VALL-E2 -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">VALL-E2</h4>
+                    <img src="https://i.imgur.com/your-vall-e2-3-img.png" alt="VALL-E2 Spectrogram 3" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample3-vall-e2.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- MATCHA-TTS -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">MATCHA-TTS</h4>
+                    <img src="https://i.imgur.com/your-matcha-tts3-img.png" alt="MATCHA-TTS Spectrogram 3" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample3-matcha-tts.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+            <!-- 第二排 4个样本 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- MMAudio+AS -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">MMAudio+AS</h4>
+                    <img src="https://i.imgur.com/your-mmaudio-as3-img.png" alt="MMAudio+AS Spectrogram 3" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample3-mmaudio-as.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- Diff-Foley+AS -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">Diff-Foley+AS</h4>
+                    <img src="https://i.imgur.com/your-diff-foley-as3-img.png" alt="Diff-Foley+AS Spectrogram 3" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample3-diff-foley-as.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- VTS -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">VTS</h4>
+                    <img src="https://i.imgur.com/your-vts3-img.png" alt="VTS Spectrogram 3" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample3-vts.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- VTS+VE -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">VTS+VE</h4>
+                    <img src="https://i.imgur.com/your-vts-ve3-img.png" alt="VTS+VE Spectrogram 3" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample3-vts-ve.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sample 4 -->
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-3 section-title">Sample 4</h3>
+            <!-- 第一排 4个样本 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                <!-- GT -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">GT</h4>
+                    <img src="https://i.imgur.com/your-gt4-img.png" alt="GT Spectrogram 4" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample4-gt.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- Ours -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">Ours</h4>
+                    <img src="https://i.imgur.com/your-ours4-img.png" alt="Ours Spectrogram 4" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample4-ours.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- VALL-E2 -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">VALL-E2</h4>
+                    <img src="https://i.imgur.com/your-vall-e2-4-img.png" alt="VALL-E2 Spectrogram 4" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample4-vall-e2.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- MATCHA-TTS -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">MATCHA-TTS</h4>
+                    <img src="https://i.imgur.com/your-matcha-tts4-img.png" alt="MATCHA-TTS Spectrogram 4" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample4-matcha-tts.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+            <!-- 第二排 4个样本 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- MMAudio+AS -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">MMAudio+AS</h4>
+                    <img src="https://i.imgur.com/your-mmaudio-as4-img.png" alt="MMAudio+AS Spectrogram 4" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample4-mmaudio-as.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- Diff-Foley+AS -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">Diff-Foley+AS</h4>
+                    <img src="https://i.imgur.com/your-diff-foley-as4-img.png" alt="Diff-Foley+AS Spectrogram 4" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample4-diff-foley-as.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- VTS -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">VTS</h4>
+                    <img src="https://i.imgur.com/your-vts4-img.png" alt="VTS Spectrogram 4" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample4-vts.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- VTS+VE -->
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <h4 class="text-sm font-medium mb-2 text-center">VTS+VE</h4>
+                    <img src="https://i.imgur.com/your-vts-ve4-img.png" alt="VTS+VE Spectrogram 4" class="w-full rounded mb-2">
+                    <audio controls>
+                        <source src="audio/sample4-vts-ve.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Figure 轮播 -->
+    <section class="mb-10">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Figure</h2>
+        <div class="carousel-container bg-white p-4 rounded-lg shadow-sm">
+            <button onclick="moveSlide(-1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition z-10">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <div class="carousel-slides">
+                <div class="carousel-slide px-2">
+                    <img src="https://via.placeholder.com/800x400?text=Figure+1" alt="Figure 1" class="w-full rounded">
+                    <p class="text-sm text-gray-600 italic mt-2 text-center">Figure 1: Caption for Figure 1</p>
+                </div>
+                <div class="carousel-slide px-2">
+                    <img src="https://via.placeholder.com/800x400?text=Figure+2" alt="Figure 2" class="w-full rounded">
+                    <p class="text-sm text-gray-600 italic mt-2 text-center">Figure 2: Caption for Figure 2</p>
+                </div>
+                <div class="carousel-slide px-2">
+                    <img src="https://via.placeholder.com/800x400?text=Figure+3" alt="Figure 3" class="w-full rounded">
+                    <p class="text-sm text-gray-600 italic mt-2 text-center">Figure 3: Caption for Figure 3</p>
+                </div>
+            </div>
+            <button onclick="moveSlide(1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition z-10">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- 8. Table 轮播 (图片形式) -->
+    <section class="mb-8">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Table</h2>
+        <div class="carousel-container bg-white p-4 rounded-lg shadow-sm">
+            <button onclick="moveTableSlide(-1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition z-10">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <div class="carousel-slides" id="tableSlides">
+                <div class="carousel-slide px-2">
+                    <img src="https://via.placeholder.com/800x400?text=Table+1+Performance+Comparison" alt="Table 1" class="w-full rounded">
+                    <p class="text-sm text-gray-600 italic mt-2 text-center">Table 1: Performance Comparison</p>
+                </div>
+                <div class="carousel-slide px-2">
+                    <img src="https://via.placeholder.com/800x400?text=Table+2+Ablation+Study" alt="Table 2" class="w-full rounded">
+                    <p class="text-sm text-gray-600 italic mt-2 text-center">Table 2: Ablation Study</p>
+                </div>
+                <div class="carousel-slide px-2">
+                    <img src="https://via.placeholder.com/800x400?text=Table+3+Cross-Dataset+Evaluation" alt="Table 3" class="w-full rounded">
+                    <p class="text-sm text-gray-600 italic mt-2 text-center">Table 3: Cross-Dataset Evaluation</p>
+                </div>
+            </div>
+            <button onclick="moveTableSlide(1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition z-10">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </section>
+
+    <script>
+        // Figure轮播逻辑
+        let slideIndex = 0;
+        const slides = document.querySelector('.carousel-container:nth-of-type(1) .carousel-slides');
+        const totalSlides = document.querySelectorAll('.carousel-container:nth-of-type(1) .carousel-slide').length;
+
+        function moveSlide(step) {
+            slideIndex = (slideIndex + step + totalSlides) % totalSlides;
+            slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+        }
+
+        // Table轮播逻辑
+        let tableSlideIndex = 0;
+        const tableSlides = document.getElementById('tableSlides');
+        const totalTableSlides = tableSlides.querySelectorAll('.carousel-slide').length;
+
+        function moveTableSlide(step) {
+            tableSlideIndex = (tableSlideIndex + step + totalTableSlides) % totalTableSlides;
+            tableSlides.style.transform = `translateX(-${tableSlideIndex * 100}%)`;
+        }
+    </script>
+</body>
+</html>
