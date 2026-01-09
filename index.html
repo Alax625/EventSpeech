@@ -42,11 +42,16 @@
 
         /* 按钮图标统一样式 - 适配深色按钮背景 */
 .btn-icon {
-    width: 18px;        /* 与按钮文字高度匹配 */
+    width: 18px;
     height: 18px;
-    object-fit: contain;/* 保证图标不变形 */
-    filter: invert(1);  /* 白色反转，适配深灰色按钮（若图标是黑色） */
+    object-fit: contain;
     display: inline-block;
+}
+/* 单独处理YouTube红色图标（避免反转） */
+.youtube-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
 }
     </style>
 </head>
@@ -56,28 +61,26 @@
         <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Your Anonymous Paper Title Here</h1>
     </section>
 
-    <!-- 功能按钮区域 -->
-<section class="mb-10 flex flex-wrap gap-3 justify-center">
-    <!-- arXiv按钮（X样式logo） -->
+    <section class="mb-10 flex flex-wrap gap-3 justify-center">
+    <!-- arXiv按钮（匹配第一张图的文件样式） -->
     <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
-        <img src="https://cdn-icons-png.flaticon.com/128/1828/1828646.png" class="btn-icon" alt="arXiv X logo">
+        <img src="https://cdn-icons-png.flaticon.com/128/3059/3059890.png" class="btn-icon" alt="arXiv logo">
         arXiv
     </a>
-    <!-- Code按钮（GitHub logo） -->
+    <!-- Code按钮（保持原有GitHub图标） -->
     <button class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
         <img src="https://cdn-icons-png.flaticon.com/128/25/25231.png" class="btn-icon" alt="GitHub logo">
         Code - Coming Soon...
     </button>
-    <!-- YouTube按钮（YouTube logo） -->
+    <!-- YouTube按钮（红色官方logo） -->
     <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
-        <img src="https://cdn-icons-png.flaticon.com/128/1384/1384060.png" class="btn-icon" alt="YouTube logo">
+        <img src="https://cdn-icons-png.flaticon.com/128/1384/1384060.png" class="youtube-icon" alt="YouTube logo">
         YouTube
     </a>
-    <!-- Dataset按钮（指定数据库图标） -->
-    <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
-        <img src="https://cdn-icons-png.flaticon.com/128/5610/5610967.png" class="btn-icon" alt="Dataset database logo">
-        Dataset
-    </a>
+    <!-- Dataset按钮（匹配第二张图的数据库样式） -->
+    <a href="#" class="px-5 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition flex items-center gap-2">
+            <i class="fa-solid fa-database"></i> Dataset
+        </a>
 </section>
 
     <!-- 3. Abstract -->
