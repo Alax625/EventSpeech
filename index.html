@@ -39,10 +39,13 @@
     height: 100%;
     border: 0; /* 去除默认边框 */
 }
+
+        /* 按钮图标统一样式 - 适配深色按钮背景 */
 .btn-icon {
-    width: 18px;
+    width: 18px;        /* 与按钮文字高度匹配 */
     height: 18px;
-    object-fit: contain;
+    object-fit: contain;/* 保证图标不变形 */
+    filter: invert(1);  /* 白色反转，适配深灰色按钮（若图标是黑色） */
     display: inline-block;
 }
     </style>
@@ -53,11 +56,11 @@
         <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Your Anonymous Paper Title Here</h1>
     </section>
 
-    <!-- 按钮区域代码 -->
+    <!-- 功能按钮区域 -->
 <section class="mb-10 flex flex-wrap gap-3 justify-center">
-    <!-- arXiv按钮（匹配你提供的图标样式） -->
+    <!-- arXiv按钮（X样式logo） -->
     <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
-        <img src="https://cdn-icons-png.flaticon.com/128/3059/3059890.png" class="btn-icon" alt="arXiv logo">
+        <img src="https://cdn-icons-png.flaticon.com/128/1828/1828646.png" class="btn-icon" alt="arXiv X logo">
         arXiv
     </a>
     <!-- Code按钮（GitHub logo） -->
@@ -70,9 +73,9 @@
         <img src="https://cdn-icons-png.flaticon.com/128/1384/1384060.png" class="btn-icon" alt="YouTube logo">
         YouTube
     </a>
-    <!-- Dataset按钮（数据库标志） -->
+    <!-- Dataset按钮（指定数据库图标） -->
     <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
-        <img src="https://cdn-icons-png.flaticon.com/128/10344/10344173.png" class="btn-icon" alt="Dataset logo">
+        <img src="https://cdn-icons-png.flaticon.com/128/5610/5610967.png" class="btn-icon" alt="Dataset database logo">
         Dataset
     </a>
 </section>
