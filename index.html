@@ -24,7 +24,6 @@
         .carousel-container { 
             position: relative; 
             overflow: hidden !important; /* 强制隐藏溢出，彻底解决漏图 */
-            /* 移除max-width，继承content-container的宽度 */
             margin: 0 auto;    
             border-radius: 0.5rem;
             padding: 0 !important; /* 移除容器内边距，避免按钮被挤出 */
@@ -88,7 +87,6 @@
         
         /* 修复视频铺满问题的样式 - 简化，继承统一容器宽度 */
         .youtube-container {
-            /* 移除max-width，继承content-container的宽度 */
             margin: 0 auto;    /* 居中 */
             width: 100%;
         }
@@ -551,7 +549,8 @@
     <section class="mb-10">
         <div class="content-container">
             <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Qualitative Results</h2>
-            <div class="carousel-container bg-white p-4 shadow-sm">
+            <!-- 给轮播容器添加ID，方便精准定位 -->
+            <div id="figureCarousel" class="carousel-container bg-white p-4 shadow-sm">
                 <button class="carousel-btn carousel-btn-left" onclick="moveSlide(-1)">
                     <i class="fa-solid fa-chevron-left"></i>
                 </button>
@@ -580,7 +579,8 @@
     <section class="mb-10">
         <div class="content-container">
             <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Quantitative Results</h2>
-            <div class="carousel-container bg-white shadow-sm"> <!-- 移除多余p-4，避免按钮挤压 -->
+            <!-- 给Table轮播容器添加ID，方便精准定位 -->
+            <div id="tableCarousel" class="carousel-container bg-white shadow-sm">
                 <button class="carousel-btn carousel-btn-left" onclick="moveTableSlide(-1)">
                     <i class="fa-solid fa-chevron-left"></i>
                 </button>
@@ -615,19 +615,23 @@
         // ========== Figure 轮播（无缝循环 + 自动播放）==========
         let slideIndex = 0;
         const figureSlides = document.getElementById('figureSlides');
-        const totalFigureSlides = figureSlides.querySelectorAll('.carousel-slide').length;
+        const totalFigureSlides = figureSlides ? figureSlides.querySelectorAll('.carousel-slide').length : 0;
         let figureAutoPlayTimer; // 自动播放定时器
 
         // 初始化：复制第一份slide到末尾，实现无缝循环
         function initFigureCarousel() {
+            if (!figureSlides || totalFigureSlides === 0) return;
+            
             const firstSlide = figureSlides.querySelector('.carousel-slide').cloneNode(true);
             figureSlides.appendChild(firstSlide);
-            // 启动自动播放
+            // 启动自动播放（5秒轮播）
             startFigureAutoPlay();
         }
 
         // 切换轮播（核心无缝逻辑）
         function moveSlide(step) {
+            if (!figureSlides) return;
+            
             // 停止自动播放（手动操作后重置）
             stopFigureAutoPlay();
             
@@ -654,30 +658,37 @@
                 }, 0);
             }
 
-            // 重置自动播放
+            // 重置自动播放（手动操作后，5秒后继续自动轮播）
             startFigureAutoPlay();
         }
 
-        // 启动Figure自动播放
+        // 启动Figure自动播放（5秒轮播一次）
         function startFigureAutoPlay() {
+            // 先清除旧定时器，避免重复
+            stopFigureAutoPlay();
             figureAutoPlayTimer = setInterval(() => {
-                moveSlide(1); // 每5秒翻下一页
-            }, 5000);
+                moveSlide(1); 
+            }, 5000); // 5秒自动轮播
         }
 
         // 停止Figure自动播放
         function stopFigureAutoPlay() {
-            clearInterval(figureAutoPlayTimer);
+            if (figureAutoPlayTimer) {
+                clearInterval(figureAutoPlayTimer);
+                figureAutoPlayTimer = null;
+            }
         }
 
         // ========== Table 轮播（无缝循环 + 自动播放）==========
         let tableSlideIndex = 0;
         const tableSlides = document.getElementById('tableSlides');
-        const totalTableSlides = tableSlides.querySelectorAll('.carousel-slide').length;
+        const totalTableSlides = tableSlides ? tableSlides.querySelectorAll('.carousel-slide').length : 0;
         let tableAutoPlayTimer;
 
         // 初始化Table轮播
         function initTableCarousel() {
+            if (!tableSlides || totalTableSlides === 0) return;
+            
             const firstSlide = tableSlides.querySelector('.carousel-slide').cloneNode(true);
             tableSlides.appendChild(firstSlide);
             startTableAutoPlay();
@@ -685,6 +696,8 @@
 
         // Table切换逻辑
         function moveTableSlide(step) {
+            if (!tableSlides) return;
+            
             stopTableAutoPlay();
             
             tableSlideIndex += step;
@@ -710,31 +723,50 @@
             startTableAutoPlay();
         }
 
-        // 启动Table自动播放
+        // 启动Table自动播放（5秒轮播一次）
         function startTableAutoPlay() {
+            stopTableAutoPlay();
             tableAutoPlayTimer = setInterval(() => {
                 moveTableSlide(1);
-            }, 5000);
+            }, 5000); // 5秒自动轮播
         }
 
         // 停止Table自动播放
         function stopTableAutoPlay() {
-            clearInterval(tableAutoPlayTimer);
+            if (tableAutoPlayTimer) {
+                clearInterval(tableAutoPlayTimer);
+                tableAutoPlayTimer = null;
+            }
         }
 
-        // Figure 悬浮暂停
-        document.querySelector('#figureSlides').parentNode.addEventListener('mouseenter', stopFigureAutoPlay);
-        document.querySelector('#figureSlides').parentNode.addEventListener('mouseleave', startFigureAutoPlay);
+        // ========== 鼠标悬停事件绑定（精准定位容器）==========
+        // Figure 悬浮暂停/离开继续
+        const figureCarouselEl = document.getElementById('figureCarousel');
+        if (figureCarouselEl) {
+            figureCarouselEl.addEventListener('mouseenter', function() {
+                stopFigureAutoPlay(); // 鼠标悬停，停止自动播放
+            });
+            figureCarouselEl.addEventListener('mouseleave', function() {
+                startFigureAutoPlay(); // 鼠标离开，5秒后继续自动播放
+            });
+        }
 
-        // Table 悬浮暂停
-        document.querySelector('#tableSlides').parentNode.addEventListener('mouseenter', stopTableAutoPlay);
-        document.querySelector('#tableSlides').parentNode.addEventListener('mouseleave', startTableAutoPlay);
+        // Table 悬浮暂停/离开继续
+        const tableCarouselEl = document.getElementById('tableCarousel');
+        if (tableCarouselEl) {
+            tableCarouselEl.addEventListener('mouseenter', function() {
+                stopTableAutoPlay(); // 鼠标悬停，停止自动播放
+            });
+            tableCarouselEl.addEventListener('mouseleave', function() {
+                startTableAutoPlay(); // 鼠标离开，5秒后继续自动播放
+            });
+        }
 
         // 页面加载完成后初始化轮播
-        window.onload = function() {
+        document.addEventListener('DOMContentLoaded', function() {
             initFigureCarousel();
             initTableCarousel();
-        };
+        });
     </script>
 </body>
 </html>
