@@ -133,35 +133,25 @@
 </style>
 
 <section class="mb-10 flex flex-wrap gap-3 justify-center">
-    <!-- arXiv按钮 -->
-    <a href="#" class="px-6 py-3 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center justify-center gap-2 min-w-[140px]">
-        <i class="fa-solid fa-file-pdf text-lg"></i>
-        <div class="text-center">
-            arXiv<br>
-            <span class="text-xs opacity-80">(Coming Soon...)</span>
-        </div>
+    <!-- arXiv按钮（匹配第一张图的文件样式） -->
+     <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
+        <i class="fa-solid fa-file-pdf"></i> arXiv(Coming Soon...)
     </a>
-    <!-- Code按钮 -->
-    <button class="px-6 py-3 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center justify-center gap-2 min-w-[140px]">
-        <img src="https://cdn-icons-png.flaticon.com/128/25/25231.png" class="btn-icon" style="filter: invert(1);" alt="GitHub logo">
-        <div class="text-center">
-            Code<br>
-            <span class="text-xs opacity-80">(Coming Soon...)</span>
-        </div>
-    </button>
-    <!-- YouTube按钮 -->
-    <a href="#" class="px-6 py-3 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center justify-center gap-2 min-w-[140px]">
+    <!-- Code按钮（保持原有GitHub图标） -->
+    <button class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
+    <!-- 添加filter: invert(1)将黑色图标转为白色，适配深色按钮 -->
+    <img src="https://cdn-icons-png.flaticon.com/128/25/25231.png" class="btn-icon" style="filter: invert(1);" alt="GitHub logo">
+    Code(Coming Soon...)
+</button>
+    <!-- YouTube按钮（红色官方logo） -->
+    <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
         <img src="https://cdn-icons-png.flaticon.com/128/1384/1384060.png" class="youtube-icon" alt="YouTube logo">
-        <div class="text-center">YouTube</div>
+        YouTube
     </a>
-    <!-- Dataset按钮 -->
-    <a href="#" class="px-6 py-3 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center justify-center gap-2 min-w-[140px]">
-        <i class="fa-solid fa-database text-lg"></i>
-        <div class="text-center">
-            Dataset<br>
-            <span class="text-xs opacity-80">(Coming Soon...)</span>
-        </div>
-    </a>
+    <!-- Dataset按钮（匹配第二张图的数据库样式） -->
+   <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
+            <i class="fa-solid fa-database"></i> Dataset(Coming Soon...)
+        </a>
 </section>
 
     <!-- 3. Abstract -->
