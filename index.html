@@ -63,6 +63,28 @@
 .carousel-btn-right {
     right: 10px;
 }
+        /* 原有轮播样式基础上，添加以下代码 */
+.carousel-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 0; /* 移除内边距，避免漏出相邻图 */
+}
+.carousel-slides {
+    display: flex;
+    transition: transform 0.5s ease;
+    will-change: transform; /* 优化动画性能 */
+}
+.carousel-container {
+    overflow: hidden; /* 强制隐藏溢出内容 */
+    position: relative;
+}
+        /* 给Table轮播的图片单独加居中样式 */
+#tableSlides .carousel-slide img {
+    max-height: 400px; /* 限制Table图片最大高度 */
+    margin: 20px auto; /* 上下留白+水平居中，让短图居中显示 */
+    display: block;
+}
+
         /* 统一标题居中 */
         .section-title { text-align: center !important; }
         /* 修复视频铺满问题的样式 */
@@ -535,10 +557,11 @@
                 <i class="fa-solid fa-chevron-left"></i>
             </button>
             <div class="carousel-slides" id="tableSlides">
-                <div class="carousel-slide px-2">
+                <div class="carousel-slides" id="tableSlides">
+                <div class="carousel-slide">
                     <img src="Images/Table/2.png" alt="Table 1" class="w-full rounded">
                 </div>
-                <div class="carousel-slide px-2">
+                <div class="carousel-slide">
                     <img src="Images/Table/3.png" alt="Table 2" class="w-full rounded">
                 </div>
                 <div class="carousel-slide px-2">
