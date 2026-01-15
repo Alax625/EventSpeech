@@ -154,11 +154,11 @@
         </a>
 </section>
 
-    <!-- 3. Abstract -->
+  <!-- 3. Abstract -->
 <section class="mb-10">
     <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Abstract</h2>
-    <p class="text-gray-700 leading-relaxed text-justify"> <!-- 新增text-justify实现两端对齐 -->
-        Traditional visual-guided speech generation relies heavily on frame-based RGB inputs, yet it faces a fundamental physical bottleneck: the "Tempo- ral Granularity Mismatch". Since standard cam- eras integrate light over a fixed exposure time, they inevitably blur the high-frequency articula- tory transients (e.g., micro-tremors and rapid lip onsets) essential for expressive speech. To break this ceiling, we propose EventSpeech, the first framework to leverage neuromorphic event sig- nals for high-fidelity speech generation. Unlike frames, event sensors asynchronously record in- tensity changes with microsecond precision, pro- viding a continuous kinematic stream that is struc- turally isomorphic to acoustic waveforms. Our approach features a multi-scale Audio Encoder synergizing Mamba and Wavelet transforms, cou- pled with a bidirectional alignment mechanism that synchronizes sparse visual dynamics with dense acoustic features. Crucially, to validate the superiority of events beyond simulation, we construct EVT-SPK, the first benchmark com- prising both large-scale synthetic data and real- world recordings captured via specialized neuro- morphic hardware. Extensive experiments demon- strate that EventSpeech significantly outperforms state-of-the-art RGB-based methods, particularly in preserving fine-grained prosody and maintain- ing robustness against motion blur, establishing a new paradigm for physically-grounded speech generation.
+    <p class="text-gray-700 leading-relaxed text-justify font-serif" style="font-family: 'Times New Roman', Times, serif;">
+        Traditional visual-guided speech generation relies heavily on frame-based RGB inputs, yet it faces a fundamental physical bottleneck: the ``Temporal Granularity Mismatch". Since standard cameras integrate light over a fixed exposure time, they inevitably blur the high-frequency articulatory transients (e.g., micro-tremors and rapid lip onsets) essential for expressive speech. To break this ceiling, we propose EventSpeech, the first framework to leverage neuromorphic event signals for high-fidelity speech generation. Unlike frames, event sensors asynchronously record intensity changes with microsecond precision, providing a continuous kinematic stream that is structurally isomorphic to acoustic waveforms. Our approach features a multi-scale Audio Encoder synergizing Mamba and Wavelet transforms, coupled with a bidirectional alignment mechanism that synchronizes sparse visual dynamics with dense acoustic features. Crucially, to validate the superiority of events beyond simulation, we construct EVT-SPK, the first benchmark comprising both large-scale synthetic data and real-world recordings captured via specialized neuromorphic hardware. Extensive experiments demonstrate that EventSpeech significantly outperforms state-of-the-art RGB-based methods, particularly in preserving fine-grained prosody and maintaining robustness against motion blur, establishing a new paradigm for physically-grounded speech generation.
     </p>
 </section>
 
@@ -517,10 +517,15 @@
         </div>
     </section>
 
-    <!-- 7. Figure 轮播 -->
-    <body class="bg-gray-50 text-gray-800 max-w-7xl mx-auto px-4 py-8"> <!-- 放宽页面最大宽度，适配轮播 -->
-    <section class="mb-10">
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Figure</h2>
+    <!-- 整合后的 Comparisons 模块 -->
+<body class="bg-gray-50 text-gray-800 max-w-7xl mx-auto px-4 py-8">
+<section class="mb-10">
+    <!-- 统一的模块标题 -->
+    <h2 class="text-2xl font-bold mb-6 text-gray-900 section-title">Comparisons of Generated Speech Between EventSpeech and Baselines</h2>
+    
+    <!-- Figure 轮播（作为子模块） -->
+    <div class="mb-8">
+        <h3 class="text-xl font-semibold mb-4 text-gray-800">Figure</h3>
         <div class="carousel-container bg-white p-4 shadow-sm">
             <button class="carousel-btn carousel-btn-left" onclick="moveSlide(-1)">
                 <i class="fa-solid fa-chevron-left"></i>
@@ -543,40 +548,42 @@
                 <i class="fa-solid fa-chevron-right"></i>
             </button>
         </div>
-    </section>
+    </div>
 
-   <!-- 8. Table 轮播 (图片形式) -->
-<section class="mb-8">
-    <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Table</h2>
-    <div class="carousel-container bg-white shadow-sm"> <!-- 移除多余p-4，避免按钮挤压 -->
-        <button class="carousel-btn carousel-btn-left" onclick="moveTableSlide(-1)">
-            <i class="fa-solid fa-chevron-left"></i> <!-- 无多余<符号 -->
-        </button>
-        <div class="carousel-slides" id="tableSlides">
-            <div class="carousel-slide">
-                <img src="Images/Table/2.png" alt="Table 1" class="w-full rounded">
+    <!-- Table 轮播（作为子模块） -->
+    <div>
+        <h3 class="text-xl font-semibold mb-4 text-gray-800">Table</h3>
+        <div class="carousel-container bg-white shadow-sm">
+            <button class="carousel-btn carousel-btn-left" onclick="moveTableSlide(-1)">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <div class="carousel-slides" id="tableSlides">
+                <div class="carousel-slide">
+                    <img src="Images/Table/2.png" alt="Table 1" class="w-full rounded">
+                </div>
+                <div class="carousel-slide">
+                    <img src="Images/Table/3.png" alt="Table 2" class="w-full rounded">
+                </div>
+                <div class="carousel-slide">
+                    <img src="Images/Table/4.png" alt="Table 3" class="w-full rounded">
+                </div>
+                <div class="carousel-slide">
+                    <img src="Images/Table/5.png" alt="Table 4" class="w-full rounded">
+                </div>
+                <div class="carousel-slide">
+                    <img src="Images/Table/6.png" alt="Table 5" class="w-full rounded">
+                </div>
+                <div class="carousel-slide">
+                    <img src="Images/Table/7.png" alt="Table 6" class="w-full rounded">
+                </div>
             </div>
-            <div class="carousel-slide">
-                <img src="Images/Table/3.png" alt="Table 2" class="w-full rounded">
-            </div>
-            <div class="carousel-slide">
-                <img src="Images/Table/4.png" alt="Table 3" class="w-full rounded">
-            </div>
-            <div class="carousel-slide">
-                <img src="Images/Table/5.png" alt="Table 4" class="w-full rounded">
-            </div>
-            <div class="carousel-slide">
-                <img src="Images/Table/6.png" alt="Table 5" class="w-full rounded">
-            </div>
-            <div class="carousel-slide">
-                <img src="Images/Table/7.png" alt="Table 6" class="w-full rounded">
-            </div>
+            <button class="carousel-btn carousel-btn-right" onclick="moveTableSlide(1)">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
         </div>
-        <button class="carousel-btn carousel-btn-right" onclick="moveTableSlide(1)">
-            <i class="fa-solid fa-chevron-right"></i> <!-- 无多余<符号 -->
-        </button>
     </div>
 </section>
+</body>
 
     <script>
         // ========== Figure 轮播（无缝循环 + 自动播放）==========
