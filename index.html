@@ -11,156 +11,142 @@
     <style>
         /* 音频控件样式适配 */
         audio { width: 100%; max-width: 300px; }
+        
         /* 轮播图核心样式 - 彻底修复漏图+按钮消失 */
-    .carousel-container { 
-        position: relative; 
-        overflow: hidden !important; /* 强制隐藏溢出，彻底解决漏图 */
-        max-width: 1000px; 
-        margin: 0 auto;    
-        border-radius: 0.5rem;
-        padding: 0 !important; /* 移除容器内边距，避免按钮被挤出 */
-        min-height: 480px; /* Table轮播最小高度，保证按钮不消失 */
-    }
-    .carousel-slides { 
-        display: flex; 
-        transition: transform 0.5s ease; 
-        width: 100%; /* 强制轮播容器宽度100%，避免溢出 */
-    }
-    .carousel-slide { 
-        min-width: 100% !important; /* 强制每个slide占满宽度，杜绝漏图 */
-        box-sizing: border-box;
-        padding: 0 !important; /* 移除slide内边距 */
-    }
-    /* 通用轮播图片样式 */
-    .carousel-slide img {
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-        max-height: 600px;
-        margin: 0 auto;
-        display: block; /* 避免图片行内间隙 */
-    }
-    /* Table轮播图片单独样式（居中+适配） */
-    #tableSlides .carousel-slide img {
-        max-height: 400px;
-        margin: 40px auto !important; /* 增加上下留白，居中更明显 */
-    }
-    /* 轮播按钮样式 - 固定位置，避免消失 */
-    .carousel-btn {
-        position: absolute !important; /* 强制绝对定位 */
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(0,0,0,0.7);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        z-index: 999 !important; /* 最高层级，避免被遮挡 */
-        transition: background 0.3s ease;
-    }
-    .carousel-btn-left {
-        left: 15px !important; /* 左按钮固定位置 */
-    }
-    .carousel-btn-right {
-        right: 15px !important; /* 右按钮固定位置，解决消失问题 */
-    }
-    .carousel-btn:hover {
-        background: rgba(0,0,0,0.9);
-    }
+        .carousel-container { 
+            position: relative; 
+            overflow: hidden !important; /* 强制隐藏溢出，彻底解决漏图 */
+            max-width: 1000px; 
+            margin: 0 auto;    
+            border-radius: 0.5rem;
+            padding: 0 !important; /* 移除容器内边距，避免按钮被挤出 */
+            min-height: 480px; /* Table轮播最小高度，保证按钮不消失 */
+        }
+        .carousel-slides { 
+            display: flex; 
+            transition: transform 0.5s ease; 
+            width: 100%; /* 强制轮播容器宽度100%，避免溢出 */
+        }
+        .carousel-slide { 
+            min-width: 100% !important; /* 强制每个slide占满宽度，杜绝漏图 */
+            box-sizing: border-box;
+            padding: 0 !important; /* 移除slide内边距 */
+        }
+        /* 通用轮播图片样式 */
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            max-height: 600px;
+            margin: 0 auto;
+            display: block; /* 避免图片行内间隙 */
+        }
+        /* Table轮播图片单独样式（居中+适配） */
+        #tableSlides .carousel-slide img {
+            max-height: 400px;
+            margin: 40px auto !important; /* 增加上下留白，居中更明显 */
+        }
+        /* 轮播按钮样式 - 固定位置，避免消失 */
+        .carousel-btn {
+            position: absolute !important; /* 强制绝对定位 */
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999 !important; /* 最高层级，避免被遮挡 */
+            transition: background 0.3s ease;
+        }
+        .carousel-btn-left {
+            left: 15px !important; /* 左按钮固定位置 */
+        }
+        .carousel-btn-right {
+            right: 15px !important; /* 右按钮固定位置，解决消失问题 */
+        }
+        .carousel-btn:hover {
+            background: rgba(0,0,0,0.9);
+        }
 
         /* 统一标题居中 */
         .section-title { text-align: center !important; }
+        
         /* 修复视频铺满问题的样式 */
-.youtube-container {
-    max-width: 1200px; /* 正常尺寸宽度 */
-    margin: 0 auto;    /* 居中 */
-    width: 100%;
-}
-/* 强制视频容器保持16:9比例，同时让iframe铺满 */
-.youtube-video-wrapper {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%; /* 16:9比例的固定高度（100%/16*9） */
-    height: 0;
-    overflow: hidden;
-    border-radius: 0.5rem; /* 保持原有圆角 */
-    background: #e5e7eb; /* 背景色和之前一致 */
-}
-.youtube-video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0; /* 去除默认边框 */
-}
+        .youtube-container {
+            max-width: 1200px; /* 正常尺寸宽度 */
+            margin: 0 auto;    /* 居中 */
+            width: 100%;
+        }
+        /* 强制视频容器保持16:9比例，同时让iframe铺满 */
+        .youtube-video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9比例的固定高度（100%/16*9） */
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.5rem; /* 保持原有圆角 */
+            background: #e5e7eb; /* 背景色和之前一致 */
+        }
+        .youtube-video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0; /* 去除默认边框 */
+        }
 
         /* 按钮图标统一样式 - 适配深色按钮背景 */
-.btn-icon {
-    width: 18px;
-    height: 18px;
-    object-fit: contain;
-    display: inline-block;
-}
-/* 单独处理YouTube红色图标（避免反转） */
-.youtube-icon {
-    width: 18px;
-    height: 18px;
-    object-fit: contain;
-}
+        .btn-icon, .youtube-icon {
+            width: auto;
+            height: 1.25rem; /* 基础高度，适配按钮文字大小 */
+            max-height: 100%; /* 不超过按钮高度 */
+            flex-shrink: 0; /* 防止图标被压缩 */
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 max-w-5xl mx-auto px-4 py-8">
+<body class="bg-gray-50 text-gray-800 max-w-7xl mx-auto px-4 py-8">
     <!-- 1. 论文标题 -->
-    <section class="mb-8 text-center">
+    <section class="mb-10 text-center">
         <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Can We Hear from Events? Generating Speech from Neuromorphic Events</h1>
     </section>
 
-   <!-- 先补充图标自适应的样式（放在<style>标签内） -->
-<style>
-/* 按钮图标自适应样式 */
-.btn-icon, .youtube-icon {
-    width: auto;
-    height: 1.25rem; /* 基础高度，适配按钮文字大小 */
-    max-height: 100%; /* 不超过按钮高度 */
-    flex-shrink: 0; /* 防止图标被压缩 */
-}
-</style>
-
-<section class="mb-10 flex flex-wrap gap-3 justify-center">
-    <!-- arXiv按钮（匹配第一张图的文件样式） -->
-     <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
-        <i class="fa-solid fa-file-pdf"></i> arXiv(Coming Soon...)
-    </a>
-    <!-- Code按钮（保持原有GitHub图标） -->
-    <button class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
-    <!-- 添加filter: invert(1)将黑色图标转为白色，适配深色按钮 -->
-    <img src="https://cdn-icons-png.flaticon.com/128/25/25231.png" class="btn-icon" style="filter: invert(1);" alt="GitHub logo">
-    Code(Coming Soon...)
-</button>
-    <!-- YouTube按钮（红色官方logo） -->
-    <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
-        <img src="https://cdn-icons-png.flaticon.com/128/1384/1384060.png" class="youtube-icon" alt="YouTube logo">
-        YouTube
-    </a>
-    <!-- Dataset按钮（匹配第二张图的数据库样式） -->
-   <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
+    <!-- 2. 功能按钮区 -->
+    <section class="mb-10 flex flex-wrap gap-3 justify-center">
+        <!-- arXiv按钮（匹配第一张图的文件样式） -->
+        <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
+            <i class="fa-solid fa-file-pdf"></i> arXiv(Coming Soon...)
+        </a>
+        <!-- Code按钮（保持原有GitHub图标） -->
+        <button class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
+            <!-- 添加filter: invert(1)将黑色图标转为白色，适配深色按钮 -->
+            <img src="https://cdn-icons-png.flaticon.com/128/25/25231.png" class="btn-icon" style="filter: invert(1);" alt="GitHub logo">
+            Code(Coming Soon...)
+        </button>
+        <!-- YouTube按钮（红色官方logo） -->
+        <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
+            <img src="https://cdn-icons-png.flaticon.com/128/1384/1384060.png" class="youtube-icon" alt="YouTube logo">
+            YouTube
+        </a>
+        <!-- Dataset按钮（匹配第二张图的数据库样式） -->
+        <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
             <i class="fa-solid fa-database"></i> Dataset(Coming Soon...)
         </a>
-</section>
+    </section>
 
-  <!-- 3. Abstract -->
-<section class="mb-10">
-    <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Abstract</h2>
-    <p class="text-gray-700 leading-relaxed text-justify" style="font-family: 'Times New Roman', Times, serif;">
-        Traditional visual-guided speech generation relies heavily on frame-based RGB inputs, yet it faces a fundamental physical bottleneck: the "Temporal Granularity Mismatch". Since standard cameras integrate light over a fixed exposure time, they inevitably blur the high-frequency articulatory transients (e.g., micro-tremors and rapid lip onsets) essential for expressive speech. To break this ceiling, we propose <strong>EventSpeech</strong>, the first framework to leverage neuromorphic event signals for high-fidelity speech generation. Unlike frames, event sensors asynchronously record intensity changes with microsecond precision, providing a continuous kinematic stream that is structurally isomorphic to acoustic waveforms. Our approach features a multi-scale <em>AudioEncoder</em> synergizing Mamba and Wavelet transforms, coupled with a bidirectional alignment mechanism that synchronizes sparse visual dynamics with dense acoustic features. Crucially, to validate the superiority of events beyond simulation, we construct <strong>EVT-SPK</strong>, the first benchmark comprising both large-scale synthetic data and real-world recordings captured via specialized neuromorphic hardware. Extensive experiments demonstrate that EventSpeech significantly outperforms state-of-the-art RGB-based methods, particularly in preserving fine-grained prosody and maintaining robustness against motion blur, establishing a new paradigm for physically-grounded speech generation.
-    </p>
-</section>
+    <!-- 3. Abstract -->
+    <section class="mb-10">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Abstract</h2>
+        <p class="text-gray-700 leading-relaxed text-justify" style="font-family: 'Times New Roman', Times, serif;">
+            Traditional visual-guided speech generation relies heavily on frame-based RGB inputs, yet it faces a fundamental physical bottleneck: the "Temporal Granularity Mismatch". Since standard cameras integrate light over a fixed exposure time, they inevitably blur the high-frequency articulatory transients (e.g., micro-tremors and rapid lip onsets) essential for expressive speech. To break this ceiling, we propose <strong>EventSpeech</strong>, the first framework to leverage neuromorphic event signals for high-fidelity speech generation. Unlike frames, event sensors asynchronously record intensity changes with microsecond precision, providing a continuous kinematic stream that is structurally isomorphic to acoustic waveforms. Our approach features a multi-scale <em>AudioEncoder</em> synergizing Mamba and Wavelet transforms, coupled with a bidirectional alignment mechanism that synchronizes sparse visual dynamics with dense acoustic features. Crucially, to validate the superiority of events beyond simulation, we construct <strong>EVT-SPK</strong>, the first benchmark comprising both large-scale synthetic data and real-world recordings captured via specialized neuromorphic hardware. Extensive experiments demonstrate that EventSpeech significantly outperforms state-of-the-art RGB-based methods, particularly in preserving fine-grained prosody and maintaining robustness against motion blur, establishing a new paradigm for physically-grounded speech generation.
+        </p>
+    </section>
 
     <!-- 4. Method -->
     <section class="mb-10">
@@ -168,17 +154,18 @@
         <div class="bg-white p-4 rounded-lg shadow-sm">
             <img src="Images/Method.png" alt="Method Framework" class="w-full rounded">
         </div>
-    
-        <!-- 5. YouTube Video (修复视频铺满问题) -->
-<section class="mb-10">
-    <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">YouTube Video</h2>
-    <div class="youtube-container">
-        <!-- 使用自定义wrapper强制视频比例+铺满 -->
-        <div class="youtube-video-wrapper">
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </section>
+
+    <!-- 5. YouTube Video (修复视频铺满问题) -->
+    <section class="mb-10">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">YouTube Video</h2>
+        <div class="youtube-container">
+            <!-- 使用自定义wrapper强制视频比例+铺满 -->
+            <div class="youtube-video-wrapper">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- 6. Demo (Sample 1-4) -->
     <section class="mb-10">
@@ -187,11 +174,11 @@
         <!-- Sample 1 -->
         <div class="mb-8">
             <div class="text-left mb-2">
-        <span class="text-xl font-semibold section-title">Sample 1：</span>
-        <span class="text-gray-700 leading-relaxed" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: inherit;">
-            No, the man was not drunk. You wanted how he could take up with this stranger. 
-        </span>
-    </div>
+                <span class="text-xl font-semibold section-title">Sample 1：</span>
+                <span class="text-gray-700 leading-relaxed" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: inherit;">
+                    No, the man was not drunk. You wanted how he could take up with this stranger. 
+                </span>
+            </div>
             <!-- 第一排 4个样本 -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
                 <!-- GT -->
@@ -275,10 +262,10 @@
         <!-- Sample 2 -->
         <div class="mb-8">
             <div class="text-left mb-2">
-        <span class="text-xl font-semibold section-title">Sample 2：</span>
-        <span class="text-gray-700 leading-relaxed" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: inherit;">
-            Dogs are sitting by the door.
-        </span>
+                <span class="text-xl font-semibold section-title">Sample 2：</span>
+                <span class="text-gray-700 leading-relaxed" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: inherit;">
+                    Dogs are sitting by the door.
+                </span>
             </div>
             <!-- 第一排 4个样本 -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
@@ -363,10 +350,10 @@
         <!-- Sample 3 -->
         <div class="mb-8">
             <div class="text-left mb-2">
-        <span class="text-xl font-semibold section-title">Sample 3：</span>
-        <span class="text-gray-700 leading-relaxed" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: inherit;">
-             His superiors had also christis, saying it was the way for ittererhoner. 
-        </span>
+                <span class="text-xl font-semibold section-title">Sample 3：</span>
+                <span class="text-gray-700 leading-relaxed" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: inherit;">
+                    His superiors had also christis, saying it was the way for ittererhoner. 
+                </span>
             </div>
             <!-- 第一排 4个样本 -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
@@ -451,10 +438,10 @@
         <!-- Sample 4 -->
         <div class="mb-8">
             <div class="text-left mb-2">
-        <span class="text-xl font-semibold section-title">Sample 4：</span>
-        <span class="text-gray-700 leading-relaxed" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: inherit;">
-            Dogs are sitting by the door. 
-        </span>
+                <span class="text-xl font-semibold section-title">Sample 4：</span>
+                <span class="text-gray-700 leading-relaxed" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: inherit;">
+                    Dogs are sitting by the door. 
+                </span>
             </div>
             <!-- 第一排 4个样本 -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
@@ -538,7 +525,6 @@
     </section>
 
     <!-- 7. Figure 轮播 -->
-    <body class="bg-gray-50 text-gray-800 max-w-7xl mx-auto px-4 py-8"> <!-- 放宽页面最大宽度，适配轮播 -->
     <section class="mb-10">
         <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Qualitative Results</h2>
         <div class="carousel-container bg-white p-4 shadow-sm">
@@ -565,164 +551,163 @@
         </div>
     </section>
 
-   <!-- 8. Table 轮播 (图片形式) -->
-<section class="mb-8">
-    <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Quantitative Results</h2>
-    <div class="carousel-container bg-white shadow-sm"> <!-- 移除多余p-4，避免按钮挤压 -->
-        <button class="carousel-btn carousel-btn-left" onclick="moveTableSlide(-1)">
-            <i class="fa-solid fa-chevron-left"></i> <!-- 无多余<符号 -->
-        </button>
-        <div class="carousel-slides" id="tableSlides">
-            <div class="carousel-slide">
-                <img src="Images/Table/2.png" alt="Table 1" class="w-full rounded">
+    <!-- 8. Table 轮播 (图片形式) -->
+    <section class="mb-10">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Quantitative Results</h2>
+        <div class="carousel-container bg-white shadow-sm"> <!-- 移除多余p-4，避免按钮挤压 -->
+            <button class="carousel-btn carousel-btn-left" onclick="moveTableSlide(-1)">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <div class="carousel-slides" id="tableSlides">
+                <div class="carousel-slide">
+                    <img src="Images/Table/2.png" alt="Table 1" class="w-full rounded">
+                </div>
+                <div class="carousel-slide">
+                    <img src="Images/Table/3.png" alt="Table 2" class="w-full rounded">
+                </div>
+                <div class="carousel-slide">
+                    <img src="Images/Table/4.png" alt="Table 3" class="w-full rounded">
+                </div>
+                <div class="carousel-slide">
+                    <img src="Images/Table/5.png" alt="Table 4" class="w-full rounded">
+                </div>
+                <div class="carousel-slide">
+                    <img src="Images/Table/6.png" alt="Table 5" class="w-full rounded">
+                </div>
+                <div class="carousel-slide">
+                    <img src="Images/Table/7.png" alt="Table 6" class="w-full rounded">
+                </div>
             </div>
-            <div class="carousel-slide">
-                <img src="Images/Table/3.png" alt="Table 2" class="w-full rounded">
-            </div>
-            <div class="carousel-slide">
-                <img src="Images/Table/4.png" alt="Table 3" class="w-full rounded">
-            </div>
-            <div class="carousel-slide">
-                <img src="Images/Table/5.png" alt="Table 4" class="w-full rounded">
-            </div>
-            <div class="carousel-slide">
-                <img src="Images/Table/6.png" alt="Table 5" class="w-full rounded">
-            </div>
-            <div class="carousel-slide">
-                <img src="Images/Table/7.png" alt="Table 6" class="w-full rounded">
-            </div>
+            <button class="carousel-btn carousel-btn-right" onclick="moveTableSlide(1)">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
         </div>
-        <button class="carousel-btn carousel-btn-right" onclick="moveTableSlide(1)">
-            <i class="fa-solid fa-chevron-right"></i> <!-- 无多余<符号 -->
-        </button>
-    </div>
-</section>
+    </section>
 
     <script>
         // ========== Figure 轮播（无缝循环 + 自动播放）==========
-let slideIndex = 0;
-const figureSlides = document.getElementById('figureSlides');
-const totalFigureSlides = figureSlides.querySelectorAll('.carousel-slide').length;
-let figureAutoPlayTimer; // 自动播放定时器
+        let slideIndex = 0;
+        const figureSlides = document.getElementById('figureSlides');
+        const totalFigureSlides = figureSlides.querySelectorAll('.carousel-slide').length;
+        let figureAutoPlayTimer; // 自动播放定时器
 
-// 初始化：复制第一份slide到末尾，实现无缝循环
-function initFigureCarousel() {
-    const firstSlide = figureSlides.querySelector('.carousel-slide').cloneNode(true);
-    figureSlides.appendChild(firstSlide);
-    // 启动自动播放
-    startFigureAutoPlay();
-}
+        // 初始化：复制第一份slide到末尾，实现无缝循环
+        function initFigureCarousel() {
+            const firstSlide = figureSlides.querySelector('.carousel-slide').cloneNode(true);
+            figureSlides.appendChild(firstSlide);
+            // 启动自动播放
+            startFigureAutoPlay();
+        }
 
-// 切换轮播（核心无缝逻辑）
-function moveSlide(step) {
-    // 停止自动播放（手动操作后重置）
-    stopFigureAutoPlay();
-    
-    slideIndex += step;
-    figureSlides.style.transition = 'transform 0.5s ease';
-    figureSlides.style.transform = `translateX(-${slideIndex * 100}%)`;
-
-    // 无缝循环处理：最后一张→第一张（无回退动画）
-    if (slideIndex >= totalFigureSlides) {
-        setTimeout(() => {
-            figureSlides.style.transition = 'none'; // 关闭动画
-            slideIndex = 0;
-            figureSlides.style.transform = `translateX(0)`;
-        }, 500); // 等待动画结束后重置
-    }
-    // 第一张←最后一张（无回退动画）
-    if (slideIndex < 0) {
-        figureSlides.style.transition = 'none';
-        slideIndex = totalFigureSlides;
-        figureSlides.style.transform = `translateX(-${slideIndex * 100}%)`;
-        // 强制重绘后恢复动画
-        setTimeout(() => {
+        // 切换轮播（核心无缝逻辑）
+        function moveSlide(step) {
+            // 停止自动播放（手动操作后重置）
+            stopFigureAutoPlay();
+            
+            slideIndex += step;
             figureSlides.style.transition = 'transform 0.5s ease';
-        }, 0);
-    }
+            figureSlides.style.transform = `translateX(-${slideIndex * 100}%)`;
 
-    // 重置自动播放
-    startFigureAutoPlay();
-}
+            // 无缝循环处理：最后一张→第一张（无回退动画）
+            if (slideIndex >= totalFigureSlides) {
+                setTimeout(() => {
+                    figureSlides.style.transition = 'none'; // 关闭动画
+                    slideIndex = 0;
+                    figureSlides.style.transform = `translateX(0)`;
+                }, 500); // 等待动画结束后重置
+            }
+            // 第一张←最后一张（无回退动画）
+            if (slideIndex < 0) {
+                figureSlides.style.transition = 'none';
+                slideIndex = totalFigureSlides;
+                figureSlides.style.transform = `translateX(-${slideIndex * 100}%)`;
+                // 强制重绘后恢复动画
+                setTimeout(() => {
+                    figureSlides.style.transition = 'transform 0.5s ease';
+                }, 0);
+            }
 
-// 启动Figure自动播放
-function startFigureAutoPlay() {
-    figureAutoPlayTimer = setInterval(() => {
-        moveSlide(1); // 每5秒翻下一页
-    }, 5000);
-}
+            // 重置自动播放
+            startFigureAutoPlay();
+        }
 
-// 停止Figure自动播放
-function stopFigureAutoPlay() {
-    clearInterval(figureAutoPlayTimer);
-}
+        // 启动Figure自动播放
+        function startFigureAutoPlay() {
+            figureAutoPlayTimer = setInterval(() => {
+                moveSlide(1); // 每5秒翻下一页
+            }, 5000);
+        }
 
-// ========== Table 轮播（无缝循环 + 自动播放）==========
-let tableSlideIndex = 0;
-const tableSlides = document.getElementById('tableSlides');
-const totalTableSlides = tableSlides.querySelectorAll('.carousel-slide').length;
-let tableAutoPlayTimer;
+        // 停止Figure自动播放
+        function stopFigureAutoPlay() {
+            clearInterval(figureAutoPlayTimer);
+        }
 
-// 初始化Table轮播
-function initTableCarousel() {
-    const firstSlide = tableSlides.querySelector('.carousel-slide').cloneNode(true);
-    tableSlides.appendChild(firstSlide);
-    startTableAutoPlay();
-}
+        // ========== Table 轮播（无缝循环 + 自动播放）==========
+        let tableSlideIndex = 0;
+        const tableSlides = document.getElementById('tableSlides');
+        const totalTableSlides = tableSlides.querySelectorAll('.carousel-slide').length;
+        let tableAutoPlayTimer;
 
-// Table切换逻辑
-function moveTableSlide(step) {
-    stopTableAutoPlay();
-    
-    tableSlideIndex += step;
-    tableSlides.style.transition = 'transform 0.5s ease';
-    tableSlides.style.transform = `translateX(-${tableSlideIndex * 100}%)`;
+        // 初始化Table轮播
+        function initTableCarousel() {
+            const firstSlide = tableSlides.querySelector('.carousel-slide').cloneNode(true);
+            tableSlides.appendChild(firstSlide);
+            startTableAutoPlay();
+        }
 
-    if (tableSlideIndex >= totalTableSlides) {
-        setTimeout(() => {
-            tableSlides.style.transition = 'none';
-            tableSlideIndex = 0;
-            tableSlides.style.transform = `translateX(0)`;
-        }, 500);
-    }
-    if (tableSlideIndex < 0) {
-        tableSlides.style.transition = 'none';
-        tableSlideIndex = totalTableSlides;
-        tableSlides.style.transform = `translateX(-${tableSlideIndex * 100}%)`;
-        setTimeout(() => {
+        // Table切换逻辑
+        function moveTableSlide(step) {
+            stopTableAutoPlay();
+            
+            tableSlideIndex += step;
             tableSlides.style.transition = 'transform 0.5s ease';
-        }, 0);
-    }
+            tableSlides.style.transform = `translateX(-${tableSlideIndex * 100}%)`;
 
-    startTableAutoPlay();
-}
+            if (tableSlideIndex >= totalTableSlides) {
+                setTimeout(() => {
+                    tableSlides.style.transition = 'none';
+                    tableSlideIndex = 0;
+                    tableSlides.style.transform = `translateX(0)`;
+                }, 500);
+            }
+            if (tableSlideIndex < 0) {
+                tableSlides.style.transition = 'none';
+                tableSlideIndex = totalTableSlides;
+                tableSlides.style.transform = `translateX(-${tableSlideIndex * 100}%)`;
+                setTimeout(() => {
+                    tableSlides.style.transition = 'transform 0.5s ease';
+                }, 0);
+            }
 
-// 启动Table自动播放
-function startTableAutoPlay() {
-    tableAutoPlayTimer = setInterval(() => {
-        moveTableSlide(1);
-    }, 5000);
-}
+            startTableAutoPlay();
+        }
 
-// 停止Table自动播放
-function stopTableAutoPlay() {
-    clearInterval(tableAutoPlayTimer);
-}
+        // 启动Table自动播放
+        function startTableAutoPlay() {
+            tableAutoPlayTimer = setInterval(() => {
+                moveTableSlide(1);
+            }, 5000);
+        }
 
-// 👇 把悬浮暂停代码添加到这里 👇
-// Figure 悬浮暂停
-document.querySelector('#figureSlides').parentNode.addEventListener('mouseenter', stopFigureAutoPlay);
-document.querySelector('#figureSlides').parentNode.addEventListener('mouseleave', startFigureAutoPlay);
+        // 停止Table自动播放
+        function stopTableAutoPlay() {
+            clearInterval(tableAutoPlayTimer);
+        }
 
-// Table 悬浮暂停
-document.querySelector('#tableSlides').parentNode.addEventListener('mouseenter', stopTableAutoPlay);
-document.querySelector('#tableSlides').parentNode.addEventListener('mouseleave', startTableAutoPlay);
+        // Figure 悬浮暂停
+        document.querySelector('#figureSlides').parentNode.addEventListener('mouseenter', stopFigureAutoPlay);
+        document.querySelector('#figureSlides').parentNode.addEventListener('mouseleave', startFigureAutoPlay);
 
-// 页面加载完成后初始化轮播
-window.onload = function() {
-    initFigureCarousel();
-    initTableCarousel();
-};
+        // Table 悬浮暂停
+        document.querySelector('#tableSlides').parentNode.addEventListener('mouseenter', stopTableAutoPlay);
+        document.querySelector('#tableSlides').parentNode.addEventListener('mouseleave', startTableAutoPlay);
+
+        // 页面加载完成后初始化轮播
+        window.onload = function() {
+            initFigureCarousel();
+            initTableCarousel();
+        };
     </script>
 </body>
 </html>
