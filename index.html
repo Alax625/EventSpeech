@@ -122,67 +122,44 @@
     </section>
 
     <section class="mb-10 flex flex-wrap gap-3 justify-center">
-    <!-- arXiv按钮（匹配第一张图的文件样式） -->
-     <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
-        <i class="fa-solid fa-file-pdf"></i> arXiv 
-         <br>(Coming Soon...)
+    <!-- arXiv按钮 -->
+    <a href="#" class="px-5 py-3 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2 min-w-[120px] justify-center">
+        <<i class="fa-solid fa-file-pdf"></</i>
+        <div class="text-center">
+            arXiv<br>
+            <span class="text-xs opacity-80">(Coming Soon...)</span>
+        </div>
     </a>
-    <!-- Code按钮（保持原有GitHub图标） -->
-    <button class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
-    <!-- 添加filter: invert(1)将黑色图标转为白色，适配深色按钮 -->
-    <img src="https://cdn-icons-png.flaticon.com/128/25/25231.png" class="btn-icon" style="filter: invert(1);" alt="GitHub logo">
-    Code 
-        <br>(Coming Soon...)
-</button>
-    <!-- YouTube按钮（红色官方logo） -->
-    <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
+    <!-- Code按钮 -->
+    <button class="px-5 py-3 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2 min-w-[120px] justify-center">
+        <img src="https://cdn-icons-png.flaticon.com/128/25/25231.png" class="btn-icon" style="filter: invert(1);" alt="GitHub logo">
+        <div class="text-center">
+            Code<br>
+            <span class="text-xs opacity-80">(Coming Soon...)</span>
+        </div>
+    </button>
+    <!-- YouTube按钮 -->
+    <a href="#" class="px-5 py-3 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2 min-w-[120px] justify-center">
         <img src="https://cdn-icons-png.flaticon.com/128/1384/1384060.png" class="youtube-icon" alt="YouTube logo">
-        YouTube 
+        YouTube
     </a>
-    <!-- Dataset按钮（匹配第二张图的数据库样式） -->
-   <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
-            <i class="fa-solid fa-database"></i> Dataset 
-       <br>(Coming Soon...)
+    <!-- Dataset按钮 -->
+    <a href="#" class="px-5 py-3 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2 min-w-[120px] justify-center">
+        <<i class="fa-solid fa-database"></</i>
+        <div class="text-center">
+            Dataset<br>
+            <span class="text-xs opacity-80">(Coming Soon...)</span>
+        </div>
     </a>
 </section>
 
     <!-- 3. Abstract -->
-    <section class="mb-10">
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Abstract</h2>
-        <p class="text-gray-700 leading-relaxed">
-            Traditional visual-guided speech generation relies
-heavily on frame-based RGB inputs, yet it faces
-a fundamental physical bottleneck: the “Tempo-
-ral Granularity Mismatch”. Since standard cam-
-eras integrate light over a fixed exposure time,
-they inevitably blur the high-frequency articula-
-tory transients (e.g., micro-tremors and rapid lip
-onsets) essential for expressive speech. To break
-this ceiling, we propose EventSpeech, the first
-framework to leverage neuromorphic event sig-
-nals for high-fidelity speech generation. Unlike
-frames, event sensors asynchronously record in-
-tensity changes with microsecond precision, pro-
-viding a continuous kinematic stream that is struc-
-turally isomorphic to acoustic waveforms. Our
-approach features a multi-scale Audio Encoder
-synergizing Mamba and Wavelet transforms, cou-
-pled with a bidirectional alignment mechanism
-that synchronizes sparse visual dynamics with
-dense acoustic features. Crucially, to validate
-the superiority of events beyond simulation, we
-construct EVT-SPK, the first benchmark com-
-prising both large-scale synthetic data and real-
-world recordings captured via specialized neuro-
-morphic hardware. Extensive experiments demon-
-strate that EventSpeech significantly outperforms
-state-of-the-art RGB-based methods, particularly
-in preserving fine-grained prosody and maintain-
-ing robustness against motion blur, establishing
-a new paradigm for physically-grounded speech
-generation.
-        </p>
-    </section>
+<section class="mb-10">
+    <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Abstract</h2>
+    <p class="text-gray-700 leading-relaxed text-justify"> <!-- 新增text-justify实现两端对齐 -->
+        Traditional visual-guided speech generation relies heavily on frame-based RGB inputs, yet it faces a fundamental physical bottleneck: the "Tempo- ral Granularity Mismatch". Since standard cam- eras integrate light over a fixed exposure time, they inevitably blur the high-frequency articula- tory transients (e.g., micro-tremors and rapid lip onsets) essential for expressive speech. To break this ceiling, we propose EventSpeech, the first framework to leverage neuromorphic event sig- nals for high-fidelity speech generation. Unlike frames, event sensors asynchronously record in- tensity changes with microsecond precision, pro- viding a continuous kinematic stream that is struc- turally isomorphic to acoustic waveforms. Our approach features a multi-scale Audio Encoder synergizing Mamba and Wavelet transforms, cou- pled with a bidirectional alignment mechanism that synchronizes sparse visual dynamics with dense acoustic features. Crucially, to validate the superiority of events beyond simulation, we construct EVT-SPK, the first benchmark com- prising both large-scale synthetic data and real- world recordings captured via specialized neuro- morphic hardware. Extensive experiments demon- strate that EventSpeech significantly outperforms state-of-the-art RGB-based methods, particularly in preserving fine-grained prosody and maintain- ing robustness against motion blur, establishing a new paradigm for physically-grounded speech generation.
+    </p>
+</section>
 
     <!-- 4. Method -->
     <section class="mb-10">
