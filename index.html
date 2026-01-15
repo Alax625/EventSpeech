@@ -579,33 +579,130 @@
 </section>
 
     <script>
-        // Figure轮播逻辑
-        // Figure轮播逻辑 - 修复循环，避免空白
+        // ========== Figure 轮播（无缝循环 + 自动播放）==========
 let slideIndex = 0;
 const figureSlides = document.getElementById('figureSlides');
 const totalFigureSlides = figureSlides.querySelectorAll('.carousel-slide').length;
+let figureAutoPlayTimer; // 自动播放定时器
 
-function moveSlide(step) {
-    slideIndex = (slideIndex + step) % totalFigureSlides;
-    // 处理负数索引（向左到第一页时循环到最后一页）
-    if (slideIndex < 0) {
-        slideIndex = totalFigureSlides - 1;
-    }
-    figureSlides.style.transform = `translateX(-${slideIndex * 100}%)`;
+// 初始化：复制第一份slide到末尾，实现无缝循环
+function initFigureCarousel() {
+    const firstSlide = figureSlides.querySelector('.carousel-slide').cloneNode(true);
+    figureSlides.appendChild(firstSlide);
+    // 启动自动播放
+    startFigureAutoPlay();
 }
 
-// Table轮播逻辑 - 同步优化
+// 切换轮播（核心无缝逻辑）
+function moveSlide(step) {
+    // 停止自动播放（手动操作后重置）
+    stopFigureAutoPlay();
+    
+    slideIndex += step;
+    figureSlides.style.transition = 'transform 0.5s ease';
+    figureSlides.style.transform = `translateX(-${slideIndex * 100}%)`;
+
+    // 无缝循环处理：最后一张→第一张（无回退动画）
+    if (slideIndex >= totalFigureSlides) {
+        setTimeout(() => {
+            figureSlides.style.transition = 'none'; // 关闭动画
+            slideIndex = 0;
+            figureSlides.style.transform = `translateX(0)`;
+        }, 500); // 等待动画结束后重置
+    }
+    // 第一张←最后一张（无回退动画）
+    if (slideIndex < 0) {
+        figureSlides.style.transition = 'none';
+        slideIndex = totalFigureSlides;
+        figureSlides.style.transform = `translateX(-${slideIndex * 100}%)`;
+        // 强制重绘后恢复动画
+        setTimeout(() => {
+            figureSlides.style.transition = 'transform 0.5s ease';
+        }, 0);
+    }
+
+    // 重置自动播放
+    startFigureAutoPlay();
+}
+
+// 启动Figure自动播放
+function startFigureAutoPlay() {
+    figureAutoPlayTimer = setInterval(() => {
+        moveSlide(1); // 每5秒翻下一页
+    }, 5000);
+}
+
+// 停止Figure自动播放
+function stopFigureAutoPlay() {
+    clearInterval(figureAutoPlayTimer);
+}
+
+// ========== Table 轮播（无缝循环 + 自动播放）==========
 let tableSlideIndex = 0;
 const tableSlides = document.getElementById('tableSlides');
 const totalTableSlides = tableSlides.querySelectorAll('.carousel-slide').length;
+let tableAutoPlayTimer;
 
-function moveTableSlide(step) {
-    tableSlideIndex = (tableSlideIndex + step) % totalTableSlides;
-    if (tableSlideIndex < 0) {
-        tableSlideIndex = totalTableSlides - 1;
-    }
-    tableSlides.style.transform = `translateX(-${tableSlideIndex * 100}%)`;
+// 初始化Table轮播
+function initTableCarousel() {
+    const firstSlide = tableSlides.querySelector('.carousel-slide').cloneNode(true);
+    tableSlides.appendChild(firstSlide);
+    startTableAutoPlay();
 }
+
+// Table切换逻辑
+function moveTableSlide(step) {
+    stopTableAutoPlay();
+    
+    tableSlideIndex += step;
+    tableSlides.style.transition = 'transform 0.5s ease';
+    tableSlides.style.transform = `translateX(-${tableSlideIndex * 100}%)`;
+
+    if (tableSlideIndex >= totalTableSlides) {
+        setTimeout(() => {
+            tableSlides.style.transition = 'none';
+            tableSlideIndex = 0;
+            tableSlides.style.transform = `translateX(0)`;
+        }, 500);
+    }
+    if (tableSlideIndex < 0) {
+        tableSlides.style.transition = 'none';
+        tableSlideIndex = totalTableSlides;
+        tableSlides.style.transform = `translateX(-${tableSlideIndex * 100}%)`;
+        setTimeout(() => {
+            tableSlides.style.transition = 'transform 0.5s ease';
+        }, 0);
+    }
+
+    startTableAutoPlay();
+}
+
+// 启动Table自动播放
+function startTableAutoPlay() {
+    tableAutoPlayTimer = setInterval(() => {
+        moveTableSlide(1);
+    }, 5000);
+}
+
+// 停止Table自动播放
+function stopTableAutoPlay() {
+    clearInterval(tableAutoPlayTimer);
+}
+
+// 👇 把悬浮暂停代码添加到这里 👇
+// Figure 悬浮暂停
+document.querySelector('#figureSlides').parentNode.addEventListener('mouseenter', stopFigureAutoPlay);
+document.querySelector('#figureSlides').parentNode.addEventListener('mouseleave', startFigureAutoPlay);
+
+// Table 悬浮暂停
+document.querySelector('#tableSlides').parentNode.addEventListener('mouseenter', stopTableAutoPlay);
+document.querySelector('#tableSlides').parentNode.addEventListener('mouseleave', startTableAutoPlay);
+
+// 页面加载完成后初始化轮播
+window.onload = function() {
+    initFigureCarousel();
+    initTableCarousel();
+};
     </script>
 </body>
 </html>
