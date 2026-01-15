@@ -9,6 +9,14 @@
     <link rel="icon" href="Images/human.jpg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        /* 核心修改：定义统一的内容容器样式 */
+        .content-container {
+            max-width: 1200px; /* 统一最大宽度，与视频容器保持一致 */
+            margin: 0 auto;    /* 居中对齐 */
+            padding: 0 1rem;   /* 统一左右内边距，适配移动端 */
+            width: 100%;       /* 宽度100%，不超出父容器 */
+        }
+
         /* 音频控件样式适配 */
         audio { width: 100%; max-width: 300px; }
         
@@ -16,11 +24,12 @@
         .carousel-container { 
             position: relative; 
             overflow: hidden !important; /* 强制隐藏溢出，彻底解决漏图 */
-            max-width: 1000px; 
+            /* 移除max-width，继承content-container的宽度 */
             margin: 0 auto;    
             border-radius: 0.5rem;
             padding: 0 !important; /* 移除容器内边距，避免按钮被挤出 */
             min-height: 480px; /* Table轮播最小高度，保证按钮不消失 */
+            width: 100%; /* 宽度100%，适配统一容器 */
         }
         .carousel-slides { 
             display: flex; 
@@ -77,9 +86,9 @@
         /* 统一标题居中 */
         .section-title { text-align: center !important; }
         
-        /* 修复视频铺满问题的样式 */
+        /* 修复视频铺满问题的样式 - 简化，继承统一容器宽度 */
         .youtube-container {
-            max-width: 1200px; /* 正常尺寸宽度 */
+            /* 移除max-width，继承content-container的宽度 */
             margin: 0 auto;    /* 居中 */
             width: 100%;
         }
@@ -111,476 +120,494 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 max-w-7xl mx-auto px-4 py-8">
-    <!-- 1. 论文标题 -->
-    <section class="mb-10 text-center">
-        <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Can We Hear from Events? Generating Speech from Neuromorphic Events</h1>
-    </section>
-
-    <!-- 2. 功能按钮区 -->
-    <section class="mb-10 flex flex-wrap gap-3 justify-center">
-        <!-- arXiv按钮（匹配第一张图的文件样式） -->
-        <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
-            <i class="fa-solid fa-file-pdf"></i> arXiv(Coming Soon...)
-        </a>
-        <!-- Code按钮（保持原有GitHub图标） -->
-        <button class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
-            <!-- 添加filter: invert(1)将黑色图标转为白色，适配深色按钮 -->
-            <img src="https://cdn-icons-png.flaticon.com/128/25/25231.png" class="btn-icon" style="filter: invert(1);" alt="GitHub logo">
-            Code(Coming Soon...)
-        </button>
-        <!-- YouTube按钮（红色官方logo） -->
-        <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
-            <img src="https://cdn-icons-png.flaticon.com/128/1384/1384060.png" class="youtube-icon" alt="YouTube logo">
-            YouTube
-        </a>
-        <!-- Dataset按钮（匹配第二张图的数据库样式） -->
-        <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
-            <i class="fa-solid fa-database"></i> Dataset(Coming Soon...)
-        </a>
-    </section>
-
-    <!-- 3. Abstract -->
+<body class="bg-gray-50 text-gray-800 py-8">
+    <!-- 1. 论文标题 - 包裹统一容器 -->
     <section class="mb-10">
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Abstract</h2>
-        <p class="text-gray-700 leading-relaxed text-justify" style="font-family: 'Times New Roman', Times, serif;">
-            Traditional visual-guided speech generation relies heavily on frame-based RGB inputs, yet it faces a fundamental physical bottleneck: the "Temporal Granularity Mismatch". Since standard cameras integrate light over a fixed exposure time, they inevitably blur the high-frequency articulatory transients (e.g., micro-tremors and rapid lip onsets) essential for expressive speech. To break this ceiling, we propose <strong>EventSpeech</strong>, the first framework to leverage neuromorphic event signals for high-fidelity speech generation. Unlike frames, event sensors asynchronously record intensity changes with microsecond precision, providing a continuous kinematic stream that is structurally isomorphic to acoustic waveforms. Our approach features a multi-scale <em>AudioEncoder</em> synergizing Mamba and Wavelet transforms, coupled with a bidirectional alignment mechanism that synchronizes sparse visual dynamics with dense acoustic features. Crucially, to validate the superiority of events beyond simulation, we construct <strong>EVT-SPK</strong>, the first benchmark comprising both large-scale synthetic data and real-world recordings captured via specialized neuromorphic hardware. Extensive experiments demonstrate that EventSpeech significantly outperforms state-of-the-art RGB-based methods, particularly in preserving fine-grained prosody and maintaining robustness against motion blur, establishing a new paradigm for physically-grounded speech generation.
-        </p>
-    </section>
-
-    <!-- 4. Method -->
-    <section class="mb-10">
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Method</h2>
-        <div class="bg-white p-4 rounded-lg shadow-sm">
-            <img src="Images/Method.png" alt="Method Framework" class="w-full rounded">
+        <div class="content-container">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 text-center">Can We Hear from Events? Generating Speech from Neuromorphic Events</h1>
         </div>
     </section>
 
-    <!-- 5. YouTube Video (修复视频铺满问题) -->
+    <!-- 2. 功能按钮区 - 包裹统一容器 -->
     <section class="mb-10">
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">YouTube Video</h2>
-        <div class="youtube-container">
-            <!-- 使用自定义wrapper强制视频比例+铺满 -->
-            <div class="youtube-video-wrapper">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="content-container">
+            <div class="flex flex-wrap gap-3 justify-center">
+                <!-- arXiv按钮（匹配第一张图的文件样式） -->
+                <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
+                    <i class="fa-solid fa-file-pdf"></i> arXiv(Coming Soon...)
+                </a>
+                <!-- Code按钮（保持原有GitHub图标） -->
+                <button class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
+                    <!-- 添加filter: invert(1)将黑色图标转为白色，适配深色按钮 -->
+                    <img src="https://cdn-icons-png.flaticon.com/128/25/25231.png" class="btn-icon" style="filter: invert(1);" alt="GitHub logo">
+                    Code(Coming Soon...)
+                </button>
+                <!-- YouTube按钮（红色官方logo） -->
+                <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1384/1384060.png" class="youtube-icon" alt="YouTube logo">
+                    YouTube
+                </a>
+                <!-- Dataset按钮（匹配第二张图的数据库样式） -->
+                <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
+                    <i class="fa-solid fa-database"></i> Dataset(Coming Soon...)
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- 6. Demo (Sample 1-4) -->
+    <!-- 3. Abstract - 包裹统一容器 -->
     <section class="mb-10">
-        <h2 class="text-2xl font-bold mb-6 text-gray-900 section-title">Comparisons of Generated Speech Between EventSpeech and Baselines</h2>
-        
-        <!-- Sample 1 -->
-        <div class="mb-8">
-            <div class="text-left mb-2">
-                <span class="text-xl font-semibold section-title">Sample 1：</span>
-                <span class="text-gray-700 leading-relaxed" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: inherit;">
-                    No, the man was not drunk. You wanted how he could take up with this stranger. 
-                </span>
-            </div>
-            <!-- 第一排 4个样本 -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-                <!-- GT -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">GT</h4>
-                    <img src="Sample_Mel/Sample_1/Mel_GT.png" alt="GT Spectrogram 1" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_1/audio_GT.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- Ours -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">EventSpeech (Ours)</h4>
-                    <img src="Sample_Mel/Sample_1/Mel_Ours.png" alt="Ours Spectrogram 1" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_1/audio_Ours.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- VALL-E2 -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">VALL-E2</h4>
-                    <img src="Sample_Mel/Sample_1/Mel_VALL_E2.png" alt="VALL-E2 Spectrogram 1" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_1/audio_VALL_E2.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- MATCHA-TTS -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">MATCHA-TTS</h4>
-                    <img src="Sample_Mel/Sample_1/Mel_MATCHA_TTS.png" alt="MATCHA-TTS Spectrogram 1" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_1/audio_MATCHA_TTS.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-            </div>
-            <!-- 第二排 4个样本 -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- MMAudio+AS -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">MMAudio+AS</h4>
-                    <img src="Sample_Mel/Sample_1/Mel_MMAudio+AS.png" alt="MMAudio+AS Spectrogram 1" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_1/audio_MMAudio_AS.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- Diff-Foley+AS -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">Diff-Foley+AS</h4>
-                    <img src="Sample_Mel/Sample_1/Mel_Diff_Foley+AS.png" alt="Diff-Foley+AS Spectrogram 1" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_1/audio_Diff_Foley_AS.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- VTS -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">VTS</h4>
-                    <img src="Sample_Mel/Sample_1/Mel_VTS.png" alt="VTS Spectrogram 1" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_1/audio_VTS.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- VTS+VE -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">VTS+VE</h4>
-                    <img src="Sample_Mel/Sample_1/Mel_VTS+AE.png" alt="VTS+VE Spectrogram 1" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_1/audio_VTS_AE.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
+        <div class="content-container">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Abstract</h2>
+            <p class="text-gray-700 leading-relaxed text-justify" style="font-family: 'Times New Roman', Times, serif;">
+                Traditional visual-guided speech generation relies heavily on frame-based RGB inputs, yet it faces a fundamental physical bottleneck: the "Temporal Granularity Mismatch". Since standard cameras integrate light over a fixed exposure time, they inevitably blur the high-frequency articulatory transients (e.g., micro-tremors and rapid lip onsets) essential for expressive speech. To break this ceiling, we propose <strong>EventSpeech</strong>, the first framework to leverage neuromorphic event signals for high-fidelity speech generation. Unlike frames, event sensors asynchronously record intensity changes with microsecond precision, providing a continuous kinematic stream that is structurally isomorphic to acoustic waveforms. Our approach features a multi-scale <em>AudioEncoder</em> synergizing Mamba and Wavelet transforms, coupled with a bidirectional alignment mechanism that synchronizes sparse visual dynamics with dense acoustic features. Crucially, to validate the superiority of events beyond simulation, we construct <strong>EVT-SPK</strong>, the first benchmark comprising both large-scale synthetic data and real-world recordings captured via specialized neuromorphic hardware. Extensive experiments demonstrate that EventSpeech significantly outperforms state-of-the-art RGB-based methods, particularly in preserving fine-grained prosody and maintaining robustness against motion blur, establishing a new paradigm for physically-grounded speech generation.
+            </p>
+        </div>
+    </section>
+
+    <!-- 4. Method - 包裹统一容器 -->
+    <section class="mb-10">
+        <div class="content-container">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Method</h2>
+            <div class="bg-white p-4 rounded-lg shadow-sm">
+                <img src="Images/Method.png" alt="Method Framework" class="w-full rounded">
             </div>
         </div>
+    </section>
 
-        <!-- Sample 2 -->
-        <div class="mb-8">
-            <div class="text-left mb-2">
-                <span class="text-xl font-semibold section-title">Sample 2：</span>
-                <span class="text-gray-700 leading-relaxed" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: inherit;">
-                    Dogs are sitting by the door.
-                </span>
-            </div>
-            <!-- 第一排 4个样本 -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-                <!-- GT -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">GT</h4>
-                    <img src="Sample_Mel/Sample_2/Mel_GT.png" alt="GT Spectrogram 2" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_2/audio_GT.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- Ours -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">EventSpeech (Ours)</h4>
-                    <img src="Sample_Mel/Sample_2/Mel_Ours.png" alt="Ours Spectrogram 2" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_2/audio_Ours.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- VALL-E2 -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">VALL-E2</h4>
-                    <img src="Sample_Mel/Sample_2/Mel_VALL_E2.png" alt="VALL-E2 Spectrogram 2" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_2/audio_VALL_E2.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- MATCHA-TTS -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">MATCHA-TTS</h4>
-                    <img src="Sample_Mel/Sample_2/Mel_MATCHA_TTS.png" alt="MATCHA-TTS Spectrogram 2" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_2/audio_MATCHA_TTS.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-            </div>
-            <!-- 第二排 4个样本 -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- MMAudio+AS -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">MMAudio+AS</h4>
-                    <img src="Sample_Mel/Sample_2/Mel_MMAudio+AS.png" alt="MMAudio+AS Spectrogram 2" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_2/audio_MMAudio_AS.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- Diff-Foley+AS -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">Diff-Foley+AS</h4>
-                    <img src="Sample_Mel/Sample_2/Mel_Diff_Foley+AS.png" alt="Diff-Foley+AS Spectrogram 2" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_2/audio_Diff_Foley_AS.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- VTS -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">VTS</h4>
-                    <img src="Sample_Mel/Sample_2/Mel_VTS.png" alt="VTS Spectrogram 2" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_2/audio_VTS.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- VTS+VE -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">VTS+VE</h4>
-                    <img src="Sample_Mel/Sample_2/Mel_VTS+AE.png" alt="VTS+VE Spectrogram 2" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_2/audio_VTS_AE.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-            </div>
-        </div>
-
-        <!-- Sample 3 -->
-        <div class="mb-8">
-            <div class="text-left mb-2">
-                <span class="text-xl font-semibold section-title">Sample 3：</span>
-                <span class="text-gray-700 leading-relaxed" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: inherit;">
-                    His superiors had also christis, saying it was the way for ittererhoner. 
-                </span>
-            </div>
-            <!-- 第一排 4个样本 -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-                <!-- GT -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">GT</h4>
-                    <img src="Sample_Mel/Sample_3/Mel_GT.png" alt="GT Spectrogram 3" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_3/audio_GT.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- Ours -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">EventSpeech (Ours)</h4>
-                    <img src="Sample_Mel/Sample_3/Mel_Ours.png" alt="Ours Spectrogram 3" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_3/audio_Ours.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- VALL-E2 -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">VALL-E2</h4>
-                    <img src="Sample_Mel/Sample_3/Mel_VALL_E2.png" alt="VALL-E2 Spectrogram 3" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_3/audio_VALL_E2.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- MATCHA-TTS -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">MATCHA-TTS</h4>
-                    <img src="Sample_Mel/Sample_3/Mel_MATTCHA_TTS.png" alt="MATCHA-TTS Spectrogram 3" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_3/audio_MATCHA_TTS.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-            </div>
-            <!-- 第二排 4个样本 -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- MMAudio+AS -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">MMAudio+AS</h4>
-                    <img src="Sample_Mel/Sample_3/Mel_MMAudio+AS.png" alt="MMAudio+AS Spectrogram 3" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_3/audio_MMAudio_AS.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- Diff-Foley+AS -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">Diff-Foley+AS</h4>
-                    <img src="Sample_Mel/Sample_3/Mel_Diff_Foley+AS.png" alt="Diff-Foley+AS Spectrogram 3" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_3/audio_Diff_Foley_AS.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- VTS -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">VTS</h4>
-                    <img src="Sample_Mel/Sample_3/Mel_VTS.png" alt="VTS Spectrogram 3" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_3/audio_VTS.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- VTS+VE -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">VTS+VE</h4>
-                    <img src="Sample_Mel/Sample_3/Mel_VTS+AE.png" alt="VTS+VE Spectrogram 3" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_3/audio_VTS_AE.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-            </div>
-        </div>
-
-        <!-- Sample 4 -->
-        <div class="mb-8">
-            <div class="text-left mb-2">
-                <span class="text-xl font-semibold section-title">Sample 4：</span>
-                <span class="text-gray-700 leading-relaxed" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: inherit;">
-                    Dogs are sitting by the door. 
-                </span>
-            </div>
-            <!-- 第一排 4个样本 -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-                <!-- GT -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">GT</h4>
-                    <img src="Sample_Mel/Sample_4/Mel_GT.png" alt="GT Spectrogram 4" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_4/audio_GT.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- Ours -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">EventSpeech (Ours)</h4>
-                    <img src="Sample_Mel/Sample_4/Mel_Ours.png" alt="Ours Spectrogram 4" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_4/audio_Ours.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- VALL-E2 -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">VALL-E2</h4>
-                    <img src="Sample_Mel/Sample_4/Mel_VALL_E2.png" alt="VALL-E2 Spectrogram 4" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_4/audio_VALL_E2.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- MATCHA-TTS -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">MATCHA-TTS</h4>
-                    <img src="Sample_Mel/Sample_4/Mel_MATCHA_TTS.png" alt="MATCHA-TTS Spectrogram 4" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_4/audio_MATCHA_TTS.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-            </div>
-            <!-- 第二排 4个样本 -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- MMAudio+AS -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">MMAudio+AS</h4>
-                    <img src="Sample_Mel/Sample_4/Mel_MMAudio+AS.png" alt="MMAudio+AS Spectrogram 4" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_4/audio_MMAudio_AS.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- Diff-Foley+AS -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">Diff-Foley+AS</h4>
-                    <img src="Sample_Mel/Sample_4/Mel_Diff_Foley+AS.png" alt="Diff-Foley+AS Spectrogram 4" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_4/audio_Diff_Foley_AS.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- VTS -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">VTS</h4>
-                    <img src="Sample_Mel/Sample_4/Mel_VTS.png" alt="VTS Spectrogram 4" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_4/audio_VTS.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- VTS+VE -->
-                <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <h4 class="text-sm font-medium mb-2 text-center">VTS+VE</h4>
-                    <img src="Sample_Mel/Sample_4/Mel_VTS+AE.png" alt="VTS+VE Spectrogram 4" class="w-full rounded mb-2">
-                    <audio controls>
-                        <source src="Sample_Audio/Sample_4/audio_VTS_AE.wav" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
+    <!-- 5. YouTube Video (修复视频铺满问题) - 包裹统一容器 -->
+    <section class="mb-10">
+        <div class="content-container">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">YouTube Video</h2>
+            <div class="youtube-container">
+                <!-- 使用自定义wrapper强制视频比例+铺满 -->
+                <div class="youtube-video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 7. Figure 轮播 -->
+    <!-- 6. Demo (Sample 1-4) - 包裹统一容器 -->
     <section class="mb-10">
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Qualitative Results</h2>
-        <div class="carousel-container bg-white p-4 shadow-sm">
-            <button class="carousel-btn carousel-btn-left" onclick="moveSlide(-1)">
-                <i class="fa-solid fa-chevron-left"></i>
-            </button>
-            <div class="carousel-slides" id="figureSlides">
-                <div class="carousel-slide px-2">
-                    <img src="Images/Figure/1.png" alt="Figure 1" class="w-full rounded">
+        <div class="content-container">
+            <h2 class="text-2xl font-bold mb-6 text-gray-900 section-title">Comparisons of Generated Speech Between EventSpeech and Baselines</h2>
+            
+            <!-- Sample 1 -->
+            <div class="mb-8">
+                <div class="text-left mb-2">
+                    <span class="text-xl font-semibold section-title">Sample 1：</span>
+                    <span class="text-gray-700 leading-relaxed" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: inherit;">
+                        No, the man was not drunk. You wanted how he could take up with this stranger. 
+                    </span>
                 </div>
-                <div class="carousel-slide px-2">
-                    <img src="Images/Figure/2.png" alt="Figure 2" class="w-full rounded">
+                <!-- 第一排 4个样本 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                    <!-- GT -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">GT</h4>
+                        <img src="Sample_Mel/Sample_1/Mel_GT.png" alt="GT Spectrogram 1" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_1/audio_GT.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- Ours -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">EventSpeech (Ours)</h4>
+                        <img src="Sample_Mel/Sample_1/Mel_Ours.png" alt="Ours Spectrogram 1" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_1/audio_Ours.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- VALL-E2 -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">VALL-E2</h4>
+                        <img src="Sample_Mel/Sample_1/Mel_VALL_E2.png" alt="VALL-E2 Spectrogram 1" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_1/audio_VALL_E2.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- MATCHA-TTS -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">MATCHA-TTS</h4>
+                        <img src="Sample_Mel/Sample_1/Mel_MATCHA_TTS.png" alt="MATCHA-TTS Spectrogram 1" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_1/audio_MATCHA_TTS.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
                 </div>
-                <div class="carousel-slide px-2">
-                    <img src="Images/Figure/3.png" alt="Figure 3" class="w-full rounded">
-                </div>
-                <div class="carousel-slide px-2">
-                    <img src="Images/Figure/4.png" alt="Figure 4" class="w-full rounded">
+                <!-- 第二排 4个样本 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- MMAudio+AS -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">MMAudio+AS</h4>
+                        <img src="Sample_Mel/Sample_1/Mel_MMAudio+AS.png" alt="MMAudio+AS Spectrogram 1" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_1/audio_MMAudio_AS.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- Diff-Foley+AS -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">Diff-Foley+AS</h4>
+                        <img src="Sample_Mel/Sample_1/Mel_Diff_Foley+AS.png" alt="Diff-Foley+AS Spectrogram 1" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_1/audio_Diff_Foley_AS.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- VTS -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">VTS</h4>
+                        <img src="Sample_Mel/Sample_1/Mel_VTS.png" alt="VTS Spectrogram 1" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_1/audio_VTS.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- VTS+VE -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">VTS+VE</h4>
+                        <img src="Sample_Mel/Sample_1/Mel_VTS+AE.png" alt="VTS+VE Spectrogram 1" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_1/audio_VTS_AE.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
                 </div>
             </div>
-            <button class="carousel-btn carousel-btn-right" onclick="moveSlide(1)">
-                <i class="fa-solid fa-chevron-right"></i>
-            </button>
+
+            <!-- Sample 2 -->
+            <div class="mb-8">
+                <div class="text-left mb-2">
+                    <span class="text-xl font-semibold section-title">Sample 2：</span>
+                    <span class="text-gray-700 leading-relaxed" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: inherit;">
+                        Dogs are sitting by the door.
+                    </span>
+                </div>
+                <!-- 第一排 4个样本 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                    <!-- GT -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">GT</h4>
+                        <img src="Sample_Mel/Sample_2/Mel_GT.png" alt="GT Spectrogram 2" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_2/audio_GT.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- Ours -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">EventSpeech (Ours)</h4>
+                        <img src="Sample_Mel/Sample_2/Mel_Ours.png" alt="Ours Spectrogram 2" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_2/audio_Ours.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- VALL-E2 -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">VALL-E2</h4>
+                        <img src="Sample_Mel/Sample_2/Mel_VALL_E2.png" alt="VALL-E2 Spectrogram 2" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_2/audio_VALL_E2.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- MATCHA-TTS -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">MATCHA-TTS</h4>
+                        <img src="Sample_Mel/Sample_2/Mel_MATCHA_TTS.png" alt="MATCHA-TTS Spectrogram 2" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_2/audio_MATCHA_TTS.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+                <!-- 第二排 4个样本 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- MMAudio+AS -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">MMAudio+AS</h4>
+                        <img src="Sample_Mel/Sample_2/Mel_MMAudio+AS.png" alt="MMAudio+AS Spectrogram 2" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_2/audio_MMAudio_AS.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- Diff-Foley+AS -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">Diff-Foley+AS</h4>
+                        <img src="Sample_Mel/Sample_2/Mel_Diff_Foley+AS.png" alt="Diff-Foley+AS Spectrogram 2" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_2/audio_Diff_Foley_AS.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- VTS -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">VTS</h4>
+                        <img src="Sample_Mel/Sample_2/Mel_VTS.png" alt="VTS Spectrogram 2" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_2/audio_VTS.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- VTS+VE -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">VTS+VE</h4>
+                        <img src="Sample_Mel/Sample_2/Mel_VTS+AE.png" alt="VTS+VE Spectrogram 2" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_2/audio_VTS_AE.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample 3 -->
+            <div class="mb-8">
+                <div class="text-left mb-2">
+                    <span class="text-xl font-semibold section-title">Sample 3：</span>
+                    <span class="text-gray-700 leading-relaxed" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: inherit;">
+                        His superiors had also christis, saying it was the way for ittererhoner. 
+                    </span>
+                </div>
+                <!-- 第一排 4个样本 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                    <!-- GT -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">GT</h4>
+                        <img src="Sample_Mel/Sample_3/Mel_GT.png" alt="GT Spectrogram 3" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_3/audio_GT.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- Ours -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">EventSpeech (Ours)</h4>
+                        <img src="Sample_Mel/Sample_3/Mel_Ours.png" alt="Ours Spectrogram 3" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_3/audio_Ours.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- VALL-E2 -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">VALL-E2</h4>
+                        <img src="Sample_Mel/Sample_3/Mel_VALL_E2.png" alt="VALL-E2 Spectrogram 3" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_3/audio_VALL_E2.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- MATCHA-TTS -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">MATCHA-TTS</h4>
+                        <img src="Sample_Mel/Sample_3/Mel_MATTCHA_TTS.png" alt="MATCHA-TTS Spectrogram 3" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_3/audio_MATCHA_TTS.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+                <!-- 第二排 4个样本 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- MMAudio+AS -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">MMAudio+AS</h4>
+                        <img src="Sample_Mel/Sample_3/Mel_MMAudio+AS.png" alt="MMAudio+AS Spectrogram 3" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_3/audio_MMAudio_AS.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- Diff-Foley+AS -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">Diff-Foley+AS</h4>
+                        <img src="Sample_Mel/Sample_3/Mel_Diff_Foley+AS.png" alt="Diff-Foley+AS Spectrogram 3" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_3/audio_Diff_Foley_AS.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- VTS -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">VTS</h4>
+                        <img src="Sample_Mel/Sample_3/Mel_VTS.png" alt="VTS Spectrogram 3" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_3/audio_VTS.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- VTS+VE -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">VTS+VE</h4>
+                        <img src="Sample_Mel/Sample_3/Mel_VTS+AE.png" alt="VTS+VE Spectrogram 3" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_3/audio_VTS_AE.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample 4 -->
+            <div class="mb-8">
+                <div class="text-left mb-2">
+                    <span class="text-xl font-semibold section-title">Sample 4：</span>
+                    <span class="text-gray-700 leading-relaxed" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: inherit;">
+                        Dogs are sitting by the door. 
+                    </span>
+                </div>
+                <!-- 第一排 4个样本 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                    <!-- GT -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">GT</h4>
+                        <img src="Sample_Mel/Sample_4/Mel_GT.png" alt="GT Spectrogram 4" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_4/audio_GT.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- Ours -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">EventSpeech (Ours)</h4>
+                        <img src="Sample_Mel/Sample_4/Mel_Ours.png" alt="Ours Spectrogram 4" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_4/audio_Ours.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- VALL-E2 -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">VALL-E2</h4>
+                        <img src="Sample_Mel/Sample_4/Mel_VALL_E2.png" alt="VALL-E2 Spectrogram 4" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_4/audio_VALL_E2.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- MATCHA-TTS -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">MATCHA-TTS</h4>
+                        <img src="Sample_Mel/Sample_4/Mel_MATCHA_TTS.png" alt="MATCHA-TTS Spectrogram 4" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_4/audio_MATCHA_TTS.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+                <!-- 第二排 4个样本 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- MMAudio+AS -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">MMAudio+AS</h4>
+                        <img src="Sample_Mel/Sample_4/Mel_MMAudio+AS.png" alt="MMAudio+AS Spectrogram 4" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_4/audio_MMAudio_AS.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- Diff-Foley+AS -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">Diff-Foley+AS</h4>
+                        <img src="Sample_Mel/Sample_4/Mel_Diff_Foley+AS.png" alt="Diff-Foley+AS Spectrogram 4" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_4/audio_Diff_Foley_AS.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- VTS -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">VTS</h4>
+                        <img src="Sample_Mel/Sample_4/Mel_VTS.png" alt="VTS Spectrogram 4" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_4/audio_VTS.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <!-- VTS+VE -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium mb-2 text-center">VTS+VE</h4>
+                        <img src="Sample_Mel/Sample_4/Mel_VTS+AE.png" alt="VTS+VE Spectrogram 4" class="w-full rounded mb-2">
+                        <audio controls>
+                            <source src="Sample_Audio/Sample_4/audio_VTS_AE.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- 8. Table 轮播 (图片形式) -->
+    <!-- 7. Figure 轮播 - 包裹统一容器 -->
     <section class="mb-10">
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Quantitative Results</h2>
-        <div class="carousel-container bg-white shadow-sm"> <!-- 移除多余p-4，避免按钮挤压 -->
-            <button class="carousel-btn carousel-btn-left" onclick="moveTableSlide(-1)">
-                <i class="fa-solid fa-chevron-left"></i>
-            </button>
-            <div class="carousel-slides" id="tableSlides">
-                <div class="carousel-slide">
-                    <img src="Images/Table/2.png" alt="Table 1" class="w-full rounded">
+        <div class="content-container">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Qualitative Results</h2>
+            <div class="carousel-container bg-white p-4 shadow-sm">
+                <button class="carousel-btn carousel-btn-left" onclick="moveSlide(-1)">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="carousel-slides" id="figureSlides">
+                    <div class="carousel-slide px-2">
+                        <img src="Images/Figure/1.png" alt="Figure 1" class="w-full rounded">
+                    </div>
+                    <div class="carousel-slide px-2">
+                        <img src="Images/Figure/2.png" alt="Figure 2" class="w-full rounded">
+                    </div>
+                    <div class="carousel-slide px-2">
+                        <img src="Images/Figure/3.png" alt="Figure 3" class="w-full rounded">
+                    </div>
+                    <div class="carousel-slide px-2">
+                        <img src="Images/Figure/4.png" alt="Figure 4" class="w-full rounded">
+                    </div>
                 </div>
-                <div class="carousel-slide">
-                    <img src="Images/Table/3.png" alt="Table 2" class="w-full rounded">
-                </div>
-                <div class="carousel-slide">
-                    <img src="Images/Table/4.png" alt="Table 3" class="w-full rounded">
-                </div>
-                <div class="carousel-slide">
-                    <img src="Images/Table/5.png" alt="Table 4" class="w-full rounded">
-                </div>
-                <div class="carousel-slide">
-                    <img src="Images/Table/6.png" alt="Table 5" class="w-full rounded">
-                </div>
-                <div class="carousel-slide">
-                    <img src="Images/Table/7.png" alt="Table 6" class="w-full rounded">
-                </div>
+                <button class="carousel-btn carousel-btn-right" onclick="moveSlide(1)">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
             </div>
-            <button class="carousel-btn carousel-btn-right" onclick="moveTableSlide(1)">
-                <i class="fa-solid fa-chevron-right"></i>
-            </button>
+        </div>
+    </section>
+
+    <!-- 8. Table 轮播 (图片形式) - 包裹统一容器 -->
+    <section class="mb-10">
+        <div class="content-container">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Quantitative Results</h2>
+            <div class="carousel-container bg-white shadow-sm"> <!-- 移除多余p-4，避免按钮挤压 -->
+                <button class="carousel-btn carousel-btn-left" onclick="moveTableSlide(-1)">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="carousel-slides" id="tableSlides">
+                    <div class="carousel-slide">
+                        <img src="Images/Table/2.png" alt="Table 1" class="w-full rounded">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="Images/Table/3.png" alt="Table 2" class="w-full rounded">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="Images/Table/4.png" alt="Table 3" class="w-full rounded">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="Images/Table/5.png" alt="Table 4" class="w-full rounded">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="Images/Table/6.png" alt="Table 5" class="w-full rounded">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="Images/Table/7.png" alt="Table 6" class="w-full rounded">
+                    </div>
+                </div>
+                <button class="carousel-btn carousel-btn-right" onclick="moveTableSlide(1)">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
         </div>
     </section>
 
