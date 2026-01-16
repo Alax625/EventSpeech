@@ -158,15 +158,20 @@
     </div>
 </section>
 
-    <!-- 4. Method - 包裹统一容器 -->
-    <section class="mb-10">
-        <div class="content-container">
-            <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Method</h2>
-            <div class="bg-white p-4 rounded-lg shadow-sm">
-                <img src="Images/Method.png" alt="Method Framework" class="w-full rounded">
-            </div>
+  <!-- 4. Method - 包裹统一容器（含斜体+加粗图注） -->
+<section class="mb-10">
+    <div class="content-container">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Method</h2>
+        <div class="bg-white p-4 rounded-lg shadow-sm">
+            <!-- 方法图 -->
+            <img src="Images/Method.png" alt="Method Framework" class="w-full rounded">
+            <!-- 图注：斜体+指定内容加粗+字号1.1rem -->
+            <p class="mt-3 text-gray-600 text-center font-italic" style="font-size: 1.1rem;">
+                <strong>Figure 2.</strong> Overview of the EventSpeech core architecture. <strong>Event Encoder (left)</strong>: Transduces video into events via V2E, extracting disentangled kinematics (e.g., Lip Motion) using a <strong>MHFE</strong>. <strong>Audio Encoder (right)</strong>: Synergizes Mamba blocks with <strong>HWC</strong> to capture both global prosody and local spectral details. <strong>Alignment & Generation (middle)</strong>: Bridges the temporal gap via bidirectional attention and <strong>InfoNCE</strong>, conditioning the Flow Matching decoder for expressive speech generation.
+            </p>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- 6. Demo (Sample 1-4) - 包裹统一容器 -->
     <section class="mb-10">
