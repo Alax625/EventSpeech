@@ -9,96 +9,215 @@
     <link rel="icon" href="Images/human.jpg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* 核心修改：定义统一的内容容器样式 */
-        .content-container {
-            max-width: 1200px; /* 统一最大宽度，与视频容器保持一致 */
-            margin: 0 auto;    /* 居中对齐 */
-            padding: 0 1rem;   /* 统一左右内边距，适配移动端 */
-            width: 100%;       /* 宽度100%，不超出父容器 */
+        /* 核心：统一学术风格配色 */
+        :root {
+            --color-primary: #2D3748; /* 深灰蓝（学术主色） */
+            --color-secondary: #4A5568; /* 中灰（辅助色） */
+            --color-accent: #2B6CB0; /* 淡蓝（强调色） */
+            --color-light: #F7FAFC; /* 浅灰（背景） */
+            --color-card: #FFFFFF; /* 纯白（卡片） */
         }
 
-        /* 音频控件样式适配 */
-        audio { width: 100%; max-width: 300px; }
-        
-        /* 轮播图核心样式 - 彻底修复漏图+按钮消失 */
+        /* 统一内容容器 */
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        /* 全局样式优化 */
+        body {
+            background-color: var(--color-light);
+            color: var(--color-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            padding-top: 2rem;
+            padding-bottom: 4rem;
+            margin: 0; /* 清除默认边距 */
+        }
+
+        /* 标题样式：学术化加粗+间距 */
+        .section-title {
+            text-align: center !important;
+            font-weight: 700;
+            color: var(--color-primary);
+            position: relative;
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.5rem !important;
+        }
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--color-accent);
+            border-radius: 2px;
+        }
+
+        /* 按钮区：学术化简约风格 */
+        .btn-academic {
+            padding: 0.5rem 1.25rem;
+            background-color: var(--color-card);
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-secondary);
+            text-decoration: none; /* 清除a标签下划线 */
+            font-size: 0.95rem;
+        }
+        .btn-academic:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+            background-color: #f9fafb;
+        }
+
+        /* 音频控件：统一样式 */
+        audio {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
+        }
+
+        /* 轮播图优化：更精致的学术风格 */
         .carousel-container { 
             position: relative; 
-            overflow: hidden !important; /* 强制隐藏溢出，彻底解决漏图 */
+            overflow: hidden !important;
             margin: 0 auto;    
-            border-radius: 0.5rem;
-            padding: 0 !important; /* 移除容器内边距，避免按钮被挤出 */
-            min-height: 480px; /* Table轮播最小高度，保证按钮不消失 */
-            width: 100%; /* 宽度100%，适配统一容器 */
+            border-radius: 0.75rem;
+            padding: 0 !important;
+            min-height: 480px;
+            width: 100%;
+            background-color: var(--color-card);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
         .carousel-slides { 
             display: flex; 
-            transition: transform 0.5s ease; 
-            width: 100%; /* 强制轮播容器宽度100%，避免溢出 */
+            transition: transform 0.6s ease-in-out; 
+            width: 100%;
         }
         .carousel-slide { 
-            min-width: 100% !important; /* 强制每个slide占满宽度，杜绝漏图 */
+            min-width: 100% !important;
             box-sizing: border-box;
-            padding: 0 !important; /* 移除slide内边距 */
+            padding: 1.5rem !important;
         }
-        /* 通用轮播图片样式 */
         .carousel-slide img {
             width: 100%;
             height: auto;
             object-fit: contain;
             max-height: 600px;
             margin: 0 auto;
-            display: block; /* 避免图片行内间隙 */
+            display: block;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
-        /* Table轮播图片单独样式（居中+适配） */
+        /* Table轮播图适配 */
         #tableSlides .carousel-slide img {
-            max-height: 400px;
-            margin: 40px auto !important; /* 增加上下留白，居中更明显 */
+            max-height: 450px;
+            margin: 2rem auto !important;
         }
-        /* 轮播按钮样式 - 固定位置，避免消失 */
+        /* 轮播按钮：更低调的学术风 */
         .carousel-btn {
-            position: absolute !important; /* 强制绝对定位 */
+            position: absolute !important;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0,0,0,0.7);
-            color: white;
-            border: none;
+            background: rgba(255,255,255,0.9);
+            color: var(--color-primary);
+            border: 1px solid rgba(0,0,0,0.1);
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            z-index: 999 !important; /* 最高层级，避免被遮挡 */
-            transition: background 0.3s ease;
+            z-index: 999 !important;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            padding: 0; /* 清除按钮内边距 */
         }
-        .carousel-btn-left {
-            left: 15px !important; /* 左按钮固定位置 */
-        }
-        .carousel-btn-right {
-            right: 15px !important; /* 右按钮固定位置，解决消失问题 */
-        }
+        .carousel-btn-left { left: 15px !important; }
+        .carousel-btn-right { right: 15px !important; }
         .carousel-btn:hover {
-            background: rgba(0,0,0,0.9);
+            background: var(--color-accent);
+            color: white;
+            border-color: var(--color-accent);
+        }
+        /* 修复按钮图标垂直居中 */
+        .carousel-btn i {
+            font-size: 1rem;
+            line-height: 1;
         }
 
-        /* 统一标题居中 */
-        .section-title { text-align: center !important; }
-        
-        /* 修复视频铺满问题的样式 - 简化，继承统一容器宽度 */
+        /* 卡片样式：学术化简约卡片 */
+        .card-academic {
+            background-color: var(--color-card);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+        .card-academic:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+        }
+
+        /* Demo样本标题：更清晰的层级 */
+        .sample-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap; /* 适配移动端换行 */
+        }
+        .sample-title span:first-child {
+            color: var(--color-accent);
+        }
+        .sample-text {
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            color: var(--color-secondary);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* 图注样式：学术规范 */
+        .figure-caption {
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            font-size: 1.05rem;
+            color: var(--color-secondary);
+            text-align: center;
+            margin-top: 1rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid rgba(0,0,0,0.08);
+        }
+
+        /* 视频容器优化（预留） */
         .youtube-container {
-            margin: 0 auto;    /* 居中 */
+            margin: 0 auto;
             width: 100%;
         }
-        /* 强制视频容器保持16:9比例，同时让iframe铺满 */
         .youtube-video-wrapper {
             position: relative;
             width: 100%;
-            padding-top: 56.25%; /* 16:9比例的固定高度（100%/16*9） */
+            padding-top: 56.25%;
             height: 0;
             overflow: hidden;
-            border-radius: 0.5rem; /* 保持原有圆角 */
-            background: #e5e7eb; /* 背景色和之前一致 */
+            border-radius: 0.75rem;
+            background: #E2E8F0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
         .youtube-video-wrapper iframe {
             position: absolute;
@@ -106,87 +225,99 @@
             left: 0;
             width: 100%;
             height: 100%;
-            border: 0; /* 去除默认边框 */
+            border: 0;
         }
 
-        /* 按钮图标统一样式 - 适配深色按钮背景 */
-        .btn-icon, .youtube-icon {
-            width: auto;
-            height: 1.25rem; /* 基础高度，适配按钮文字大小 */
-            max-height: 100%; /* 不超过按钮高度 */
-            flex-shrink: 0; /* 防止图标被压缩 */
+        /* 修复GitHub图标大小 */
+        .btn-academic img {
+            width: 1.25rem;
+            height: 1.25rem;
+            object-fit: contain;
         }
     </style>
+    <!-- 引入学术常用字体Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gray-50 text-gray-800 py-8">
-    <!-- 1. 论文标题 - 包裹统一容器 -->
-    <section class="mb-10">
+<body>
+    <!-- 1. 论文标题 - 学术化排版 -->
+    <section class="mb-12">
         <div class="content-container">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 text-center">Can We Hear from Events? Generating Speech from Neuromorphic Events</h1>
+            <h1 class="text-3xl md:text-4xl font-bold text-center text-gray-800 leading-tight">
+                Can We Hear from Events?<br>
+                <span class="text-xl md:text-2xl font-semibold text-gray-600 mt-2 block">Generating Speech from Neuromorphic Events</span>
+            </h1>
         </div>
     </section>
 
-    <!-- 2. 功能按钮区 - 包裹统一容器 -->
-    <section class="mb-10">
+    <!-- 2. 功能按钮区 - 学术简约风格 -->
+    <section class="mb-12">
         <div class="content-container">
             <div class="flex flex-wrap gap-3 justify-center">
-                <!-- arXiv按钮（匹配第一张图的文件样式） -->
-                <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
-                    <i class="fa-solid fa-file-pdf"></i> arXiv(Coming Soon...)
+                <!-- arXiv按钮 -->
+                <a href="#" class="btn-academic">
+                    <i class="fa-solid fa-file-pdf w-5 text-center"></i> arXiv (Coming Soon)
                 </a>
-                <!-- Code按钮（保持原有GitHub图标） -->
-                <button class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
-                    <!-- 添加filter: invert(1)将黑色图标转为白色，适配深色按钮 -->
-                    <img src="https://cdn-icons-png.flaticon.com/128/25/25231.png" class="btn-icon" style="filter: invert(1);" alt="GitHub logo">
-                    Code(Coming Soon...)
+                <!-- Code按钮 -->
+                <button class="btn-academic">
+                    <img src="https://cdn-icons-png.flaticon.com/128/25/25231.png" alt="GitHub logo">
+                    Code (Coming Soon)
                 </button>
-                <!-- Dataset按钮（匹配第二张图的数据库样式） -->
-                <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
-                    <i class="fa-solid fa-database"></i> Dataset(Coming Soon...)
+                <!-- Dataset按钮 -->
+                <a href="#" class="btn-academic">
+                    <i class="fa-solid fa-database w-5 text-center"></i> Dataset (Coming Soon)
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- 3. Abstract - 包裹统一容器 -->
-<section class="mb-10">
-    <div class="content-container">
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Abstract</h2>
-        <p class="text-gray-700 leading-relaxed text-justify" style="font-family: 'Times New Roman', Times, serif;font-size: 1.1rem">
-            Traditional visually-guided speech generation relies heavily on frame-based RGB inputs, yet it faces a fundamental physical bottleneck: the "Temporal Granularity Mismatch". Since standard cameras integrate light over a fixed exposure time, they inevitably blur the high-frequency articulatory transients (e.g., micro-tremors and rapid lip onsets) essential for expressive speech. To break this ceiling, we propose <strong>EventSpeech</strong>, the first framework to leverage neuromorphic event signals for high-fidelity speech generation. Event sensors yield asynchronous, microsecond-precise streams structurally isomorphic to acoustic waveforms. Our approach features a multi-scale <em>Audio Encoder</em> synergizing the proposed Hierarchical Wavelet Contextualizer (HWC), coupled with a bidirectional alignment mechanism that synchronizes sparse visual dynamics with dense acoustic features. Crucially, to validate the superiority of events beyond simulation, we construct <strong>EVT-SPK</strong>, the first benchmark comprising both large-scale synthetic data and real-world recordings captured via specialized neuromorphic hardware. Extensive experiments demonstrate that EventSpeech significantly outperforms state-of-the-art RGB-based methods, particularly in preserving fine-grained prosody and maintaining robustness against motion blur, establishing a new paradigm for physically-grounded speech generation.
-        </p>
-    </div>
-</section>
-
-  <!-- 4. Method - 包裹统一容器（含斜体+加粗图注） -->
-<section class="mb-10">
-    <div class="content-container">
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Method</h2>
-        <div class="bg-white p-4 rounded-lg shadow-sm">
-            <!-- 方法图 -->
-            <img src="Images/Method.png" alt="Method Framework" class="w-full rounded">
-        </div>
-    </div>
-</section>
-
-    <!-- 6. Demo (Sample 1-4) - 包裹统一容器 -->
-    <section class="mb-10">
+    <!-- 3. Abstract - 学术排版优化 -->
+    <section class="mb-12">
         <div class="content-container">
-            <h2 class="text-2xl font-bold mb-6 text-gray-900 section-title">🎧Comparisons of Generated Speech Between EventSpeech and Baselines</h2>
+            <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Abstract</h2>
+            <div class="card-academic">
+                <p class="text-gray-700 leading-relaxed text-justify" style="font-family: 'Times New Roman', Times, serif; font-size: 1.1rem">
+                    Traditional visually-guided speech generation relies heavily on frame-based RGB inputs, yet it faces a fundamental physical bottleneck: the "Temporal Granularity Mismatch". Since standard cameras integrate light over a fixed exposure time, they inevitably blur the high-frequency articulatory transients (e.g., micro-tremors and rapid lip onsets) essential for expressive speech. To break this ceiling, we propose <strong class="text-gray-800">EventSpeech</strong>, the first framework to leverage neuromorphic event signals for high-fidelity speech generation. Event sensors yield asynchronous, microsecond-precise streams structurally isomorphic to acoustic waveforms. Our approach features a multi-scale <em class="text-gray-800">Audio Encoder</em> synergizing the proposed Hierarchical Wavelet Contextualizer (HWC), coupled with a bidirectional alignment mechanism that synchronizes sparse visual dynamics with dense acoustic features. Crucially, to validate the superiority of events beyond simulation, we construct <strong class="text-gray-800">EVT-SPK</strong>, the first benchmark comprising both large-scale synthetic data and real-world recordings captured via specialized neuromorphic hardware. Extensive experiments demonstrate that EventSpeech significantly outperforms state-of-the-art RGB-based methods, particularly in preserving fine-grained prosody and maintaining robustness against motion blur, establishing a new paradigm for physically-grounded speech generation.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Method - 学术化卡片+图注 -->
+    <section class="mb-12">
+        <div class="content-container">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Method</h2>
+            <div class="card-academic">
+                <!-- 方法图 -->
+                <img src="Images/Method.png" alt="Method Framework" class="w-full rounded">
+                <!-- 图注 -->
+                <p class="figure-caption">
+                    <strong>Figure 2.</strong> Overview of the EventSpeech core architecture. <strong>Event Encoder (left)</strong>: Transduces video into events via V2E, extracting disentangled kinematics (e.g., Lip Motion) using a <strong>MHFE</strong>. <strong>Audio Encoder (right)</strong>: Synergizes Mamba blocks with <strong>HWC</strong> to capture both global prosody and local spectral details. <strong>Alignment & Generation (middle)</strong>: Bridges the temporal gap via bidirectional attention and <strong>InfoNCE</strong>, conditioning the Flow Matching decoder for expressive speech generation.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Demo - 学术化样本展示 -->
+    <section class="mb-12">
+        <div class="content-container">
+            <h2 class="text-2xl font-bold mb-6 text-gray-900 section-title">
+                <i class="fa-solid fa-headphones text-accent mr-2"></i>
+                Comparisons of Generated Speech
+            </h2>
             
             <!-- Sample 1 -->
-            <div class="mb-8">
-                <div class="text-left mb-2">
-                    <span class="text-xl font-semibold section-title">Sample 1：</span>
-                    <span class="text-gray-700 leading-relaxed" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 1.1rem;">
-                        No, the man was not drunk. You wanted how he could take up with this stranger. 
-                    </span>
+            <div class="mb-10">
+                <div class="sample-title">
+                    <span>Sample 1：</span>
+                    <span class="sample-text">No, the man was not drunk. You wanted how he could take up with this stranger.</span>
                 </div>
                 <!-- 第一排 4个样本 -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
                     <!-- GT -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">GT</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">GT</h4>
                         <img src="Sample_Mel/Sample_1/Mel_GT.png" alt="GT Spectrogram 1" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_1/audio_GT.wav" type="audio/mpeg">
@@ -194,8 +325,8 @@
                         </audio>
                     </div>
                     <!-- Ours -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">EventSpeech (Ours)</h4>
+                    <div class="card-academic border-l-4 border-accent">
+                        <h4 class="text-sm font-medium mb-2 text-center text-accent">EventSpeech (Ours)</h4>
                         <img src="Sample_Mel/Sample_1/Mel_Ours.png" alt="Ours Spectrogram 1" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_1/audio_Ours.wav" type="audio/mpeg">
@@ -203,8 +334,8 @@
                         </audio>
                     </div>
                     <!-- VALL-E2 -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">VALL-E 2</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">VALL-E 2</h4>
                         <img src="Sample_Mel/Sample_1/Mel_VALL_E2.png" alt="VALL-E2 Spectrogram 1" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_1/audio_VALL_E2.wav" type="audio/mpeg">
@@ -212,8 +343,8 @@
                         </audio>
                     </div>
                     <!-- MATCHA-TTS -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">MATCHA-TTS</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">MATCHA-TTS</h4>
                         <img src="Sample_Mel/Sample_1/Mel_MATCHA_TTS.png" alt="MATCHA-TTS Spectrogram 1" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_1/audio_MATCHA_TTS.wav" type="audio/mpeg">
@@ -224,8 +355,8 @@
                 <!-- 第二排 4个样本 -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <!-- MMAudio+AS -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">MMAudio+AS</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">MMAudio+AS</h4>
                         <img src="Sample_Mel/Sample_1/Mel_MMAudio+AS.png" alt="MMAudio+AS Spectrogram 1" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_1/audio_MMAudio_AS.wav" type="audio/mpeg">
@@ -233,8 +364,8 @@
                         </audio>
                     </div>
                     <!-- Diff-Foley+AS -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">Diff-Foley+AS</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">Diff-Foley+AS</h4>
                         <img src="Sample_Mel/Sample_1/Mel_Diff_Foley+AS.png" alt="Diff-Foley+AS Spectrogram 1" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_1/audio_Diff_Foley_AS.wav" type="audio/mpeg">
@@ -242,8 +373,8 @@
                         </audio>
                     </div>
                     <!-- VTS -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">VTS</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">VTS</h4>
                         <img src="Sample_Mel/Sample_1/Mel_VTS.png" alt="VTS Spectrogram 1" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_1/audio_VTS.wav" type="audio/mpeg">
@@ -251,8 +382,8 @@
                         </audio>
                     </div>
                     <!-- VTS+VE -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">VTS+VE</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">VTS+VE</h4>
                         <img src="Sample_Mel/Sample_1/Mel_VTS+AE.png" alt="VTS+VE Spectrogram 1" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_1/audio_VTS_AE.wav" type="audio/mpeg">
@@ -263,18 +394,16 @@
             </div>
 
             <!-- Sample 2 -->
-            <div class="mb-8">
-                <div class="text-left mb-2">
-                    <span class="text-xl font-semibold section-title">Sample 2：</span>
-                    <span class="text-gray-700 leading-relaxed" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 1.1rem;">
-                        Dogs are sitting by the door.
-                    </span>
+            <div class="mb-10">
+                <div class="sample-title">
+                    <span>Sample 2：</span>
+                    <span class="sample-text">Dogs are sitting by the door.</span>
                 </div>
                 <!-- 第一排 4个样本 -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
                     <!-- GT -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">GT</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">GT</h4>
                         <img src="Sample_Mel/Sample_2/Mel_GT.png" alt="GT Spectrogram 2" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_2/audio_GT.wav" type="audio/mpeg">
@@ -282,8 +411,8 @@
                         </audio>
                     </div>
                     <!-- Ours -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">EventSpeech (Ours)</h4>
+                    <div class="card-academic border-l-4 border-accent">
+                        <h4 class="text-sm font-medium mb-2 text-center text-accent">EventSpeech (Ours)</h4>
                         <img src="Sample_Mel/Sample_2/Mel_Ours.png" alt="Ours Spectrogram 2" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_2/audio_Ours.wav" type="audio/mpeg">
@@ -291,8 +420,8 @@
                         </audio>
                     </div>
                     <!-- VALL-E2 -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">VALL-E 2</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">VALL-E 2</h4>
                         <img src="Sample_Mel/Sample_2/Mel_VALL_E2.png" alt="VALL-E2 Spectrogram 2" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_2/audio_VALL_E2.wav" type="audio/mpeg">
@@ -300,8 +429,8 @@
                         </audio>
                     </div>
                     <!-- MATCHA-TTS -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">MATCHA-TTS</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">MATCHA-TTS</h4>
                         <img src="Sample_Mel/Sample_2/Mel_MATCHA_TTS.png" alt="MATCHA-TTS Spectrogram 2" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_2/audio_MATCHA_TTS.wav" type="audio/mpeg">
@@ -312,8 +441,8 @@
                 <!-- 第二排 4个样本 -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <!-- MMAudio+AS -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">MMAudio+AS</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">MMAudio+AS</h4>
                         <img src="Sample_Mel/Sample_2/Mel_MMAudio+AS.png" alt="MMAudio+AS Spectrogram 2" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_2/audio_MMAudio_AS.wav" type="audio/mpeg">
@@ -321,8 +450,8 @@
                         </audio>
                     </div>
                     <!-- Diff-Foley+AS -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">Diff-Foley+AS</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">Diff-Foley+AS</h4>
                         <img src="Sample_Mel/Sample_2/Mel_Diff_Foley+AS.png" alt="Diff-Foley+AS Spectrogram 2" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_2/audio_Diff_Foley_AS.wav" type="audio/mpeg">
@@ -330,8 +459,8 @@
                         </audio>
                     </div>
                     <!-- VTS -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">VTS</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">VTS</h4>
                         <img src="Sample_Mel/Sample_2/Mel_VTS.png" alt="VTS Spectrogram 2" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_2/audio_VTS.wav" type="audio/mpeg">
@@ -339,8 +468,8 @@
                         </audio>
                     </div>
                     <!-- VTS+VE -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">VTS+VE</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">VTS+VE</h4>
                         <img src="Sample_Mel/Sample_2/Mel_VTS+AE.png" alt="VTS+VE Spectrogram 2" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_2/audio_VTS_AE.wav" type="audio/mpeg">
@@ -351,18 +480,16 @@
             </div>
 
             <!-- Sample 3 -->
-            <div class="mb-8">
-                <div class="text-left mb-2">
-                    <span class="text-xl font-semibold section-title">Sample 3：</span>
-                    <span class="text-gray-700 leading-relaxed" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 1.1rem;">
-                        His superiors had also christis, saying it was the way for ittererhoner. 
-                    </span>
+            <div class="mb-10">
+                <div class="sample-title">
+                    <span>Sample 3：</span>
+                    <span class="sample-text">His superiors had also christis, saying it was the way for ittererhoner.</span>
                 </div>
                 <!-- 第一排 4个样本 -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
                     <!-- GT -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">GT</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">GT</h4>
                         <img src="Sample_Mel/Sample_3/Mel_GT.png" alt="GT Spectrogram 3" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_3/audio_GT.wav" type="audio/mpeg">
@@ -370,8 +497,8 @@
                         </audio>
                     </div>
                     <!-- Ours -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">EventSpeech (Ours)</h4>
+                    <div class="card-academic border-l-4 border-accent">
+                        <h4 class="text-sm font-medium mb-2 text-center text-accent">EventSpeech (Ours)</h4>
                         <img src="Sample_Mel/Sample_3/Mel_Ours.png" alt="Ours Spectrogram 3" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_3/audio_Ours.wav" type="audio/mpeg">
@@ -379,8 +506,8 @@
                         </audio>
                     </div>
                     <!-- VALL-E2 -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">VALL-E 2</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">VALL-E 2</h4>
                         <img src="Sample_Mel/Sample_3/Mel_VALL_E2.png" alt="VALL-E2 Spectrogram 3" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_3/audio_VALL_E2.wav" type="audio/mpeg">
@@ -388,8 +515,8 @@
                         </audio>
                     </div>
                     <!-- MATCHA-TTS -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">MATCHA-TTS</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">MATCHA-TTS</h4>
                         <img src="Sample_Mel/Sample_3/Mel_MATTCHA_TTS.png" alt="MATCHA-TTS Spectrogram 3" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_3/audio_MATCHA_TTS.wav" type="audio/mpeg">
@@ -400,8 +527,8 @@
                 <!-- 第二排 4个样本 -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <!-- MMAudio+AS -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">MMAudio+AS</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">MMAudio+AS</h4>
                         <img src="Sample_Mel/Sample_3/Mel_MMAudio+AS.png" alt="MMAudio+AS Spectrogram 3" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_3/audio_MMAudio_AS.wav" type="audio/mpeg">
@@ -409,8 +536,8 @@
                         </audio>
                     </div>
                     <!-- Diff-Foley+AS -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">Diff-Foley+AS</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">Diff-Foley+AS</h4>
                         <img src="Sample_Mel/Sample_3/Mel_Diff_Foley+AS.png" alt="Diff-Foley+AS Spectrogram 3" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_3/audio_Diff_Foley_AS.wav" type="audio/mpeg">
@@ -418,8 +545,8 @@
                         </audio>
                     </div>
                     <!-- VTS -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">VTS</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">VTS</h4>
                         <img src="Sample_Mel/Sample_3/Mel_VTS.png" alt="VTS Spectrogram 3" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_3/audio_VTS.wav" type="audio/mpeg">
@@ -427,8 +554,8 @@
                         </audio>
                     </div>
                     <!-- VTS+VE -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">VTS+VE</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">VTS+VE</h4>
                         <img src="Sample_Mel/Sample_3/Mel_VTS+AE.png" alt="VTS+VE Spectrogram 3" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_3/audio_VTS_AE.wav" type="audio/mpeg">
@@ -439,18 +566,16 @@
             </div>
 
             <!-- Sample 4 -->
-            <div class="mb-8">
-                <div class="text-left mb-2">
-                    <span class="text-xl font-semibold section-title">Sample 4：</span>
-                    <span class="text-gray-700 leading-relaxed" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 1.1rem;">
-                        Dogs are sitting by the door. 
-                    </span>
+            <div class="mb-10">
+                <div class="sample-title">
+                    <span>Sample 4：</span>
+                    <span class="sample-text">Dogs are sitting by the door.</span>
                 </div>
                 <!-- 第一排 4个样本 -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
                     <!-- GT -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">GT</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">GT</h4>
                         <img src="Sample_Mel/Sample_4/Mel_GT.png" alt="GT Spectrogram 4" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_4/audio_GT.wav" type="audio/mpeg">
@@ -458,8 +583,8 @@
                         </audio>
                     </div>
                     <!-- Ours -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">EventSpeech (Ours)</h4>
+                    <div class="card-academic border-l-4 border-accent">
+                        <h4 class="text-sm font-medium mb-2 text-center text-accent">EventSpeech (Ours)</h4>
                         <img src="Sample_Mel/Sample_4/Mel_Ours.png" alt="Ours Spectrogram 4" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_4/audio_Ours.wav" type="audio/mpeg">
@@ -467,8 +592,8 @@
                         </audio>
                     </div>
                     <!-- VALL-E2 -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">VALL-E 2</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">VALL-E 2</h4>
                         <img src="Sample_Mel/Sample_4/Mel_VALL_E2.png" alt="VALL-E2 Spectrogram 4" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_4/audio_VALL_E2.wav" type="audio/mpeg">
@@ -476,8 +601,8 @@
                         </audio>
                     </div>
                     <!-- MATCHA-TTS -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">MATCHA-TTS</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">MATCHA-TTS</h4>
                         <img src="Sample_Mel/Sample_4/Mel_MATCHA_TTS.png" alt="MATCHA-TTS Spectrogram 4" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_4/audio_MATCHA_TTS.wav" type="audio/mpeg">
@@ -488,8 +613,8 @@
                 <!-- 第二排 4个样本 -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <!-- MMAudio+AS -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">MMAudio+AS</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">MMAudio+AS</h4>
                         <img src="Sample_Mel/Sample_4/Mel_MMAudio+AS.png" alt="MMAudio+AS Spectrogram 4" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_4/audio_MMAudio_AS.wav" type="audio/mpeg">
@@ -497,8 +622,8 @@
                         </audio>
                     </div>
                     <!-- Diff-Foley+AS -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">Diff-Foley+AS</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">Diff-Foley+AS</h4>
                         <img src="Sample_Mel/Sample_4/Mel_Diff_Foley+AS.png" alt="Diff-Foley+AS Spectrogram 4" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_4/audio_Diff_Foley_AS.wav" type="audio/mpeg">
@@ -506,8 +631,8 @@
                         </audio>
                     </div>
                     <!-- VTS -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">VTS</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">VTS</h4>
                         <img src="Sample_Mel/Sample_4/Mel_VTS.png" alt="VTS Spectrogram 4" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_4/audio_VTS.wav" type="audio/mpeg">
@@ -515,8 +640,8 @@
                         </audio>
                     </div>
                     <!-- VTS+VE -->
-                    <div class="bg-white p-3 rounded-lg shadow-sm">
-                        <h4 class="text-sm font-medium mb-2 text-center">VTS+VE</h4>
+                    <div class="card-academic">
+                        <h4 class="text-sm font-medium mb-2 text-center text-gray-700">VTS+VE</h4>
                         <img src="Sample_Mel/Sample_4/Mel_VTS+AE.png" alt="VTS+VE Spectrogram 4" class="w-full rounded mb-2">
                         <audio controls>
                             <source src="Sample_Audio/Sample_4/audio_VTS_AE.wav" type="audio/mpeg">
@@ -528,26 +653,25 @@
         </div>
     </section>
 
-    <!-- 7. Figure 轮播 - 包裹统一容器 -->
-    <section class="mb-10">
+    <!-- 7. Figure 轮播 - 学术化展示 -->
+    <section class="mb-12">
         <div class="content-container">
             <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Qualitative Results</h2>
-            <!-- 给轮播容器添加ID，方便精准定位 -->
-            <div id="figureCarousel" class="carousel-container bg-white p-4 shadow-sm">
+            <div id="figureCarousel" class="carousel-container">
                 <button class="carousel-btn carousel-btn-left" onclick="moveSlide(-1)">
                     <i class="fa-solid fa-chevron-left"></i>
                 </button>
                 <div class="carousel-slides" id="figureSlides">
-                    <div class="carousel-slide px-2">
+                    <div class="carousel-slide">
                         <img src="Images/Figure/1.png" alt="Figure 1" class="w-full rounded">
                     </div>
-                    <div class="carousel-slide px-2">
+                    <div class="carousel-slide">
                         <img src="Images/Figure/2.png" alt="Figure 2" class="w-full rounded">
                     </div>
-                    <div class="carousel-slide px-2">
+                    <div class="carousel-slide">
                         <img src="Images/Figure/3.png" alt="Figure 3" class="w-full rounded">
                     </div>
-                    <div class="carousel-slide px-2">
+                    <div class="carousel-slide">
                         <img src="Images/Figure/4.png" alt="Figure 4" class="w-full rounded">
                     </div>
                 </div>
@@ -558,12 +682,11 @@
         </div>
     </section>
 
-    <!-- 8. Table 轮播 (图片形式) - 包裹统一容器 -->
-    <section class="mb-10">
+    <!-- 8. Table 轮播 - 学术化展示 -->
+    <section class="mb-12">
         <div class="content-container">
             <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Quantitative Results</h2>
-            <!-- 给Table轮播容器添加ID，方便精准定位 -->
-            <div id="tableCarousel" class="carousel-container bg-white shadow-sm">
+            <div id="tableCarousel" class="carousel-container">
                 <button class="carousel-btn carousel-btn-left" onclick="moveTableSlide(-1)">
                     <i class="fa-solid fa-chevron-left"></i>
                 </button>
@@ -619,7 +742,7 @@
             stopFigureAutoPlay();
             
             slideIndex += step;
-            figureSlides.style.transition = 'transform 0.5s ease';
+            figureSlides.style.transition = 'transform 0.6s ease-in-out';
             figureSlides.style.transform = `translateX(-${slideIndex * 100}%)`;
 
             // 无缝循环处理：最后一张→第一张（无回退动画）
@@ -628,7 +751,7 @@
                     figureSlides.style.transition = 'none'; // 关闭动画
                     slideIndex = 0;
                     figureSlides.style.transform = `translateX(0)`;
-                }, 500); // 等待动画结束后重置
+                }, 600); // 等待动画结束后重置
             }
             // 第一张←最后一张（无回退动画）
             if (slideIndex < 0) {
@@ -637,7 +760,7 @@
                 figureSlides.style.transform = `translateX(-${slideIndex * 100}%)`;
                 // 强制重绘后恢复动画
                 setTimeout(() => {
-                    figureSlides.style.transition = 'transform 0.5s ease';
+                    figureSlides.style.transition = 'transform 0.6s ease-in-out';
                 }, 0);
             }
 
@@ -651,7 +774,7 @@
             stopFigureAutoPlay();
             figureAutoPlayTimer = setInterval(() => {
                 moveSlide(1); 
-            }, 5000); // 5秒自动轮播
+            }, 6000); // 6秒自动轮播（学术页更舒缓）
         }
 
         // 停止Figure自动播放
@@ -684,7 +807,7 @@
             stopTableAutoPlay();
             
             tableSlideIndex += step;
-            tableSlides.style.transition = 'transform 0.5s ease';
+            tableSlides.style.transition = 'transform 0.6s ease-in-out';
             tableSlides.style.transform = `translateX(-${tableSlideIndex * 100}%)`;
 
             if (tableSlideIndex >= totalTableSlides) {
@@ -692,14 +815,14 @@
                     tableSlides.style.transition = 'none';
                     tableSlideIndex = 0;
                     tableSlides.style.transform = `translateX(0)`;
-                }, 500);
+                }, 600);
             }
             if (tableSlideIndex < 0) {
                 tableSlides.style.transition = 'none';
                 tableSlideIndex = totalTableSlides;
                 tableSlides.style.transform = `translateX(-${tableSlideIndex * 100}%)`;
                 setTimeout(() => {
-                    tableSlides.style.transition = 'transform 0.5s ease';
+                    tableSlides.style.transition = 'transform 0.6s ease-in-out';
                 }, 0);
             }
 
@@ -711,7 +834,7 @@
             stopTableAutoPlay();
             tableAutoPlayTimer = setInterval(() => {
                 moveTableSlide(1);
-            }, 5000); // 5秒自动轮播
+            }, 6000); // 6秒自动轮播
         }
 
         // 停止Table自动播放
