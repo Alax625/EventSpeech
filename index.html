@@ -19,6 +19,7 @@
             --color-card: #FFFFFF; /* 纯白（卡片） */
             --color-btn-bg: #F0F8F7; /* 按钮背景色 */
             --color-btn-border: #B2F5EA; /* 按钮边框色 */
+            --color-footer: #718096; /* 底注文字颜色 */
         }
 
         /* 统一内容容器 */
@@ -36,8 +37,10 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.7;
             padding-top: 2rem;
-            padding-bottom: 4rem;
+            padding-bottom: 6rem; /* 为底注预留空间 */
             margin: 0; /* 清除默认边距 */
+            position: relative; /* 为底注定位做准备 */
+            min-height: 100vh;
         }
 
         /* 标题样式：学术化加粗+间距 */
@@ -59,6 +62,24 @@
             height: 2.5px;
             background-color: var(--color-accent);
             border-radius: 2px;
+        }
+
+        /* 论文标题样式：统一字体大小 */
+        .paper-title {
+            font-size: 3xl;
+            font-size: clamp(1.875rem, 4vw, 2.5rem); /* 响应式统一字号 */
+            font-weight: 700;
+            text-align: center;
+            color: var(--color-primary);
+            line-height: 1.4;
+            letter-spacing: -0.5px;
+        }
+        .paper-title span {
+            font-size: inherit !important; /* 强制继承统一字号 */
+            font-weight: 700 !important; /* 统一加粗 */
+            color: var(--color-primary) !important; /* 统一颜色 */
+            display: block;
+            margin-top: 0.5rem !important;
         }
 
         /* 按钮区：清新自然的学术风格 */
@@ -242,21 +263,34 @@
             object-fit: contain;
         }
 
-        /* 论文标题优化 */
-        h1 {
-            letter-spacing: -0.5px; /* 轻微收紧字间距更精致 */
-        }
-        h1 span {
-            letter-spacing: 0;
-            margin-top: 1rem !important;
-        }
-
         /* 间距优化 */
         section {
             margin-bottom: 3rem !important; /* 加大区块间距更透气 */
         }
         .mb-10 {
             margin-bottom: 2.5rem !important;
+        }
+
+        /* 底注样式：学术风格 */
+        .page-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            background-color: var(--color-light);
+            border-top: 1px solid rgba(49, 151, 149, 0.1);
+            margin-top: 4rem;
+        }
+        .footer-text {
+            text-align: center;
+            color: var(--color-footer);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
         }
     </style>
     <!-- 引入学术常用字体Inter -->
@@ -265,12 +299,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- 1. 论文标题 - 学术化排版 -->
+    <!-- 1. 论文标题 - 统一字体大小 -->
     <section class="mb-12">
         <div class="content-container">
-            <h1 class="text-3xl md:text-4xl font-bold text-center text-gray-800 leading-tight">
+            <h1 class="paper-title">
                 Can We Hear from Events?<br>
-                <span class="text-xl md:text-2xl font-semibold text-gray-600 mt-2 block">Generating Speech from Neuromorphic Events</span>
+                <span>Generating Speech from Neuromorphic Events</span>
             </h1>
         </div>
     </section>
@@ -324,7 +358,7 @@
         <div class="content-container">
             <h2 class="text-2xl font-bold mb-6 text-gray-900 section-title">
                 <i class="fa-solid fa-headphones text-accent mr-2"></i>
-                Comparisons of Generated Speech
+                🎧Comparisons of Generated Speech Between EventSpeech and Baselines
             </h2>
             
             <!-- Sample 1 -->
@@ -736,6 +770,13 @@
             </div>
         </div>
     </section>
+
+    <!-- 页面底注 -->
+    <footer class="page-footer">
+        <p class="footer-text">
+            Thank you for reviewing!
+        </p>
+    </footer>
 
     <script>
         // ========== Figure 轮播（无缝循环 + 自动播放）==========
