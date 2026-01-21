@@ -80,32 +80,92 @@
             margin-top: 0.5rem !important;
         }
 
-        /* 按钮区：清新自然的学术风格 */
-        .btn-academic {
-            padding: 0.6rem 1.5rem; /* 加大内边距更舒适 */
-            background-color: var(--color-btn-bg);
-            border: 1px solid var(--color-btn-border);
-            border-radius: 0.6rem; /* 圆润边角更柔和 */
-            transition: all 0.3s ease; /* 慢一点的过渡更自然 */
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            color: var(--color-primary);
-            text-decoration: none; /* 清除a标签下划线 */
-            font-size: 0.95rem;
-            font-weight: 500; /* 轻微加粗更醒目 */
-            box-shadow: 0 1px 3px rgba(49, 151, 149, 0.08); /* 轻微阴影 */
-        }
-        .btn-academic:hover {
-            border-color: var(--color-accent);
-            color: var(--color-accent);
-            background-color: var(--color-accent-light);
-            transform: translateY(-2px); /* 轻微上浮更生动 */
-            box-shadow: 0 4px 8px rgba(49, 151, 149, 0.12);
-        }
-        .btn-academic:active {
-            transform: translateY(0); /* 点击回弹 */
-        }
+       /* 按钮区：清新自然的学术风格（基础样式保留） */
+.btn-academic {
+    padding: 0.6rem 1.5rem;
+    border-radius: 0.6rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    border: 1px solid transparent; /* 统一边框初始值 */
+}
+
+/* ========== 各按钮专属特性配色 ========== */
+/* 1. arXiv按钮：学术蓝（柔和不刺眼） */
+.arxiv-btn {
+    background-color: #EFF6FF !important; /* 浅蓝背景 */
+    border-color: #BFDBFE !important; /* 淡蓝边框 */
+    color: #1E40AF !important; /* 深蓝文字 */
+}
+.arxiv-btn:hover {
+    background-color: #DBEAFE !important; /* hover加深浅蓝 */
+    border-color: #93C5FD !important; /* hover加深边框 */
+    color: #1E40AF !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(30, 64, 175, 0.12);
+}
+
+/* 2. Code按钮：科技黑（贴合GitHub） */
+.code-btn {
+    background-color: #F3F4F6 !important; /* 浅灰背景 */
+    border-color: #D1D5DB !important; /* 淡灰边框 */
+    color: #1F2937 !important; /* 深灰/黑色文字 */
+}
+.code-btn:hover {
+    background-color: #E5E7EB !important; /* hover加深浅灰 */
+    border-color: #9CA3AF !important; /* hover加深边框 */
+    color: #111827 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(31, 41, 55, 0.12);
+}
+
+/* 3. YouTube按钮：品牌红（柔和版） */
+.youtube-btn {
+    background-color: #FFF5F5 !important; /* 浅红背景 */
+    border-color: #FECACA !important; /* 淡红边框 */
+    color: #B91C1C !important; /* 深红文字（YouTube品牌色） */
+}
+.youtube-btn:hover {
+    background-color: #FEE2E2 !important; /* hover加深浅红 */
+    border-color: #FCA5A5 !important; /* hover加深边框 */
+    color: #991B1B !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(185, 28, 28, 0.12);
+}
+
+/* 4. Dataset按钮：数据绿（清新自然） */
+.dataset-btn {
+    background-color: #ECFDF5 !important; /* 浅绿背景 */
+    border-color: #A7F3D0 !important; /* 淡绿边框 */
+    color: #065F46 !important; /* 深绿文字 */
+}
+.dataset-btn:hover {
+    background-color: #D1FAE5 !important; /* hover加深浅绿 */
+    border-color: #6EE7B7 !important; /* hover加深边框 */
+    color: #047857 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(6, 95, 70, 0.12);
+}
+
+/* 统一图标尺寸 */
+.btn-academic img, .youtube-icon {
+    width: 1.3rem;
+    height: 1.3rem;
+    object-fit: contain;
+}
+
+/* 禁用状态（可选：未上线按钮添加） */
+.btn-academic.disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    pointer-events: none;
+}
 
         /* 音频控件：统一样式 */
         audio {
@@ -327,26 +387,26 @@
         </div>
     </section>
 
-  <!-- 2. 功能按钮区 - 清新自然的学术风格 -->
+  <!-- 2. 功能按钮区 - 特性化配色+统一学术风格 -->
 <section class="mb-12">
     <div class="content-container">
         <div class="flex flex-wrap gap-4 justify-center"> <!-- 加大按钮间距 -->
-            <!-- arXiv按钮 - 替换 href 为你的arXiv链接 -->
-            <a href="https://arxiv.org/abs/你的论文编号" class="btn-academic" target="_blank">
+            <!-- arXiv按钮：学术蓝（贴合论文/pdf属性） -->
+            <a href="https://arxiv.org/abs/你的论文编号" class="btn-academic arxiv-btn" target="_blank">
                 <i class="fa-solid fa-file-pdf w-5 text-center"></i> arXiv (Coming Soon)
             </a>
-            <!-- Code按钮 - 添加onclick事件跳转到GitHub链接 -->
-            <button class="btn-academic" onclick="window.open('https://github.com/你的用户名/项目名', '_blank')">
+            <!-- Code按钮：科技黑（贴合GitHub/代码属性） -->
+            <button class="btn-academic code-btn" onclick="window.open('https://github.com/你的用户名/项目名', '_blank')">
                 <img src="https://cdn-icons-png.flaticon.com/128/25/25231.png" alt="GitHub logo">
                 Code (Coming Soon)
             </button>
-            <!-- YouTube按钮 - 替换 href 为你的YouTube视频链接 -->
+            <!-- YouTube按钮：品牌红（保留YouTube特征） -->
             <a href="https://www.youtube.com/watch?v=你的视频ID" class="btn-academic youtube-btn" target="_blank">
                 <img src="https://cdn-icons-png.flaticon.com/128/1384/1384060.png" class="youtube-icon" alt="YouTube logo">
                 YouTube
             </a>
-            <!-- Dataset按钮 - 替换 href 为你的数据集链接 -->
-            <a href="https://你的数据集地址.com" class="btn-academic" target="_blank">
+            <!-- Dataset按钮：数据绿（贴合数据集/数据库属性） -->
+            <a href="https://你的数据集地址.com" class="btn-academic dataset-btn" target="_blank">
                 <i class="fa-solid fa-database w-5 text-center"></i> Dataset (Coming Soon)
             </a>
         </div>
