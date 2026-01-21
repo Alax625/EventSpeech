@@ -290,6 +290,26 @@
             margin: 0 auto;
             padding: 0 1.5rem;
         }
+        
+        /* YouTube按钮专属样式（统一风格+品牌辨识度） */
+.youtube-btn {
+    --color-btn-bg: #FFF5F5; /* 浅红背景，贴合YouTube品牌但保持清新 */
+    --color-btn-border: #FECACA; /* 淡红边框 */
+    --color-accent-light: #FEE2E2; /* hover浅红背景 */
+    background-color: var(--color-btn-bg) !important;
+    border-color: var(--color-btn-border) !important;
+}
+.youtube-btn:hover {
+    border-color: #EF4444 !important; /* YouTube红色 */
+    color: #EF4444 !important;
+    background-color: var(--color-accent-light) !important;
+}
+/* YouTube图标大小统一 */
+.youtube-icon {
+    width: 1.3rem;
+    height: 1.3rem;
+    object-fit: contain;
+}
     </style>
     <!-- 引入学术常用字体Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -307,32 +327,31 @@
         </div>
     </section>
 
-    <!-- 2. 功能按钮区 - 清新自然的学术风格 -->
-    <section class="mb-12">
-        <div class="content-container">
-            <div class="flex flex-wrap gap-4 justify-center"> <!-- 加大按钮间距 -->
-                <!-- arXiv按钮 -->
-                <a href="#" class="btn-academic">
-                    <i class="fa-solid fa-file-pdf w-5 text-center"></i> arXiv (Coming Soon)
-                </a>
-                <!-- Code按钮 -->
-                <button class="btn-academic">
-                    <img src="https://cdn-icons-png.flaticon.com/128/25/25231.png" alt="GitHub logo">
-                    Code (Coming Soon)
-                <!-- YouTube按钮（红色官方logo） -->
-                </button>
-                <!-- YouTube按钮（红色官方logo） -->
-                <a href="#" class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition flex items-center gap-2">
-                    <img src="https://cdn-icons-png.flaticon.com/128/1384/1384060.png" class="youtube-icon" alt="YouTube logo">
-                    YouTube
-                </a>
-                <!-- Dataset按钮 -->
-                <a href="#" class="btn-academic">
-                    <i class="fa-solid fa-database w-5 text-center"></i> Dataset (Coming Soon)
-                </a>
-            </div>
+   <!-- 2. 功能按钮区 - 清新自然的学术风格 -->
+<section class="mb-12">
+    <div class="content-container">
+        <div class="flex flex-wrap gap-4 justify-center"> <!-- 加大按钮间距 -->
+            <!-- arXiv按钮 -->
+            <a href="#" class="btn-academic">
+                <i class="fa-solid fa-file-pdf w-5 text-center"></i> arXiv (Coming Soon)
+            </a>
+            <!-- Code按钮 -->
+            <button class="btn-academic">
+                <img src="https://cdn-icons-png.flaticon.com/128/25/25231.png" alt="GitHub logo">
+                Code (Coming Soon)
+            </button>
+            <!-- YouTube按钮（统一学术风格，保留品牌特征） -->
+            <a href="#" class="btn-academic youtube-btn">
+                <img src="https://cdn-icons-png.flaticon.com/128/1384/1384060.png" class="youtube-icon" alt="YouTube logo">
+                YouTube
+            </a>
+            <!-- Dataset按钮 -->
+            <a href="#" class="btn-academic">
+                <i class="fa-solid fa-database w-5 text-center"></i> Dataset (Coming Soon)
+            </a>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- 3. Abstract - 学术排版优化 -->
     <section class="mb-12">
