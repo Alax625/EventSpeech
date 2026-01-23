@@ -96,46 +96,48 @@
     border: 1px solid transparent; /* 统一边框初始值 */
 }
 
-/* ========== 各按钮专属特性配色（保留原有） ========== */
-/* 1. arXiv按钮：学术蓝 + 红色PDF图标 */
+/* ========== 各按钮专属特性配色 ========== */
+/* 1. arXiv按钮：学术蓝（柔和不刺眼） + 红色PDF图标 */
 .arxiv-btn {
-    background-color: #EFF6FF !important;
-    border-color: #BFDBFE !important;
-    color: #1E40AF !important;
+    background-color: #EFF6FF !important; /* 浅蓝背景 */
+    border-color: #BFDBFE !important; /* 淡蓝边框 */
+    color: #1E40AF !important; /* 深蓝文字 */
 }
+/* 单独设置arXiv按钮内PDF图标的颜色为红色 */
 .arxiv-btn i.fa-file-pdf {
-    color: #DC2626 !important;
+    color: #DC2626 !important; /* 标准红色（可根据需求调整色值） */
 }
 .arxiv-btn:hover {
-    background-color: #DBEAFE !important;
-    border-color: #93C5FD !important;
+    background-color: #DBEAFE !important; /* hover加深浅蓝 */
+    border-color: #93C5FD !important; /* hover加深边框 */
     color: #1E40AF !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(30, 64, 175, 0.12);
 }
+/* hover时保持图标红色不变（可选：也可调整hover后的图标颜色） */
 .arxiv-btn:hover i.fa-file-pdf {
-    color: #B91C1C !important;
+    color: #B91C1C !important; /* hover后稍深的红色，增强交互感 */
 }
 
-/* 2. Code按钮：科技黑 */
+/* 2. Code按钮：科技黑（贴合GitHub） */
 .code-btn {
-    background-color: #F3F4F6 !important;
-    border-color: #D1D5DB !important;
-    color: #1F2937 !important;
+    background-color: #F3F4F6 !important; /* 浅灰背景 */
+    border-color: #D1D5DB !important; /* 淡灰边框 */
+    color: #1F2937 !important; /* 深灰/黑色文字 */
 }
 .code-btn:hover {
-    background-color: #E5E7EB !important;
-    border-color: #9CA3AF !important;
+    background-color: #E5E7EB !important; /* hover加深浅灰 */
+    border-color: #9CA3AF !important; /* hover加深边框 */
     color: #111827 !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(31, 41, 55, 0.12);
 }
 
-/* 4. Dataset按钮：数据绿 */
+/* 4. Dataset按钮：数据绿（清新自然） */
 .dataset-btn {
-    background-color: #ECFDF5 !important;
-    border-color: #A7F3D0 !important;
-    color: #065F46 !important;
+    background-color: #ECFDF5 !important; /* 浅绿背景 */
+    border-color: #A7F3D0 !important; /* 淡绿边框 */
+    color: #065F46 !important; /* 深绿文字 */
 }
 
 /* 统一图标尺寸 */
@@ -335,37 +337,44 @@
             margin: 0 auto;
             padding: 0 1.5rem;
         }
-     /* ========== 核心调整：保留点击反馈 + 禁止跳转 ========== */
-/* 基础按钮样式（补充:active点击反馈） */
+   /* ========== 基础按钮样式（强制优先级） ========== */
 .btn-academic {
-    padding: 0.75rem 1.75rem;
-    border-radius: 0.75rem;
-    transition: all 0.2s ease-in-out;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    color: var(--color-gray-800);
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 500;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-    border: 1px solid var(--color-gray-200);
-    background-color: var(--color-gray-100);
-    cursor: pointer; /* 保留鼠标指针为“可点击”样式 */
+    padding: 0.75rem 1.75rem !important;
+    border-radius: 0.75rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    border: 1px solid #e5e7eb !important;
+    background-color: #f9fafb !important;
+    cursor: pointer !important; /* 强制可点击光标 */
+    transition: all 0.15s ease-in-out !important; /* 更快的反馈速度 */
+    /* 防止点击文字选中干扰反馈 */
+    user-select: none !important;
+    -webkit-user-select: none !important;
 }
 
-/* 点击反馈：按压抖动/收缩效果（核心恢复） */
+/* ========== 核心：点击抖动反馈（强制生效） ========== */
 .btn-academic:active {
-    transform: translateY(1px) scale(0.98); /* 点击时轻微下沉+缩小，模拟按压 */
-    box-shadow: 0 1px 2px rgba(0,0,0,0.04); /* 阴影变浅，强化按压感 */
+    transform: translateY(1px) scale(0.98) !important; /* 下沉+缩小=抖动反馈 */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important; /* 阴影收缩 */
+    opacity: 0.9 !important; /* 轻微降透明度强化反馈 */
 }
 
-/* 禁用样式调整：只禁止跳转，保留hover/点击反馈 */
+/* ========== Hover效果（保留） ========== */
+.btn-academic:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
+}
+
+/* ========== 禁用标记（仅视觉提示，不影响交互） ========== */
 .btn-academic.disabled {
-    opacity: 0.8; /* 仅轻微降低透明度，不影响视觉 */
-    /* 移除 pointer-events: none; 保留点击交互 */
-    /* 移除 transform: none !important; 保留反馈 */
-    /* 移除 box-shadow: none !important; 保留反馈 */
+    opacity: 0.85 !important; /* 仅轻微降透明度 */
+    /* 完全移除干扰交互的属性 */
+    pointer-events: auto !important;
+    cursor: pointer !important;
 }
     </style>
     <!-- 引入学术常用字体Inter -->
