@@ -125,20 +125,6 @@
     box-shadow: 0 4px 8px rgba(31, 41, 55, 0.12);
 }
 
-/* 3. YouTube按钮：品牌红（柔和版） */
-.youtube-btn {
-    background-color: #FFF5F5 !important; /* 浅红背景 */
-    border-color: #FECACA !important; /* 淡红边框 */
-    color: #B91C1C !important; /* 深红文字（YouTube品牌色） */
-}
-.youtube-btn:hover {
-    background-color: #FEE2E2 !important; /* hover加深浅红 */
-    border-color: #FCA5A5 !important; /* hover加深边框 */
-    color: #991B1B !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(185, 28, 28, 0.12);
-}
-
 /* 4. Dataset按钮：数据绿（清新自然） */
 .dataset-btn {
     background-color: #ECFDF5 !important; /* 浅绿背景 */
@@ -350,26 +336,6 @@
             margin: 0 auto;
             padding: 0 1.5rem;
         }
-        
-        /* YouTube按钮专属样式（统一风格+品牌辨识度） */
-.youtube-btn {
-    --color-btn-bg: #FFF5F5; /* 浅红背景，贴合YouTube品牌但保持清新 */
-    --color-btn-border: #FECACA; /* 淡红边框 */
-    --color-accent-light: #FEE2E2; /* hover浅红背景 */
-    background-color: var(--color-btn-bg) !important;
-    border-color: var(--color-btn-border) !important;
-}
-.youtube-btn:hover {
-    border-color: #EF4444 !important; /* YouTube红色 */
-    color: #EF4444 !important;
-    background-color: var(--color-accent-light) !important;
-}
-/* YouTube图标大小统一 */
-.youtube-icon {
-    width: 1.3rem;
-    height: 1.3rem;
-    object-fit: contain;
-}
     </style>
     <!-- 引入学术常用字体Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -400,11 +366,6 @@
                 <img src="https://cdn-icons-png.flaticon.com/128/25/25231.png" alt="GitHub logo">
                 Code (Coming Soon)
             </button>
-            <!-- YouTube按钮：品牌红（保留YouTube特征） -->
-            <a href="https://www.youtube.com/watch?v=你的视频ID" class="btn-academic youtube-btn" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/128/1384/1384060.png" class="youtube-icon" alt="YouTube logo">
-                YouTube
-            </a>
             <!-- Dataset按钮：数据绿（贴合数据集/数据库属性） -->
             <a href="https://你的数据集地址.com" class="btn-academic dataset-btn" target="_blank">
                 <i class="fa-solid fa-database w-5 text-center"></i> Dataset (Coming Soon)
@@ -418,9 +379,9 @@
         <div class="content-container">
             <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Abstract</h2>
             <div class="card-academic">
-                <p class="text-gray-700 leading-relaxed text-justify" style="font-family: 'Times New Roman', Times, serif; font-size: 1.1rem">
-                    Traditional visually-guided speech generation relies heavily on frame-based RGB inputs, yet it faces a fundamental physical bottleneck: the "Temporal Granularity Mismatch". Since standard cameras integrate light over a fixed exposure time, they inevitably blur the high-frequency articulatory transients (e.g., micro-tremors and rapid lip onsets) essential for expressive speech. To break this ceiling, we propose <strong class="text-gray-800">EventSpeech</strong>, the first framework to leverage neuromorphic event signals for high-fidelity speech generation. Event sensors yield asynchronous, microsecond-precise streams structurally isomorphic to acoustic waveforms. Our approach features a multi-scale <em class="text-gray-800">Audio Encoder</em> synergizing the proposed Hierarchical Wavelet Contextualizer (HWC), coupled with a bidirectional alignment mechanism that synchronizes sparse visual dynamics with dense acoustic features. Crucially, to validate the superiority of events beyond simulation, we construct <strong class="text-gray-800">EVT-SPK</strong>, the first benchmark comprising both large-scale synthetic data and real-world recordings captured via specialized neuromorphic hardware. Extensive experiments demonstrate that EventSpeech significantly outperforms state-of-the-art RGB-based methods, particularly in preserving fine-grained prosody and maintaining robustness against motion blur, establishing a new paradigm for physically-grounded speech generation.
-                </p>
+            <p class="text-gray-700 leading-relaxed text-justify" style="font-family: 'Times New Roman', Times, serif; font-size: 1.1rem">
+    Traditional visually-guided speech generation relies heavily on frame-based RGB inputs, yet it faces a fundamental physical bottleneck: the "Temporal Granularity Mismatch". Since standard cameras integrate light over a fixed exposure time, they inevitably blur the high-frequency articulatory transients (e.g., micro-tremors and rapid lip onsets) essential for expressive speech. To break this ceiling, we propose <strong class="text-gray-800">EventSpeech</strong>, the first framework to leverage neuromorphic events for expressive speech generation. Event sensors yield asynchronous, microsecond-precise streams that naturally align with the temporal dynamics of acoustic waveforms. Our approach features a multi-scale <em class="text-gray-800">Audio Encoder</em> synergizing the proposed Hierarchical Wavelet Contextualizer (HWC), coupled with a bidirectional alignment mechanism that synchronizes sparse visual dynamics with dense acoustic features. Crucially, to validate the superiority of events beyond simulation, we construct <strong class="text-gray-800">EVT-SPK</strong>, the first benchmark comprising both large-scale synthetic data and real-world recordings captured via specialized neuromorphic hardware. Extensive experiments demonstrate that EventSpeech significantly outperforms state-of-the-art across the objective and subjective evaluation, particularly in preserving fine-grained prosody and maintaining robustness against motion blur, establishing a new paradigm for speech generation based on neuromorphic events.
+            </p>
             </div>
         </div>
     </section>
@@ -432,19 +393,6 @@
             <div class="card-academic">
                 <!-- 方法图 - 移除图注 -->
                 <img src="Images/Method.png" alt="Method Framework" class="w-full rounded">
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. YouTube Video (修复视频铺满问题) - 包裹统一容器 -->
-    <section class="mb-10">
-        <div class="content-container">
-            <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">YouTube Video</h2>
-            <div class="youtube-container">
-                <!-- 使用自定义wrapper强制视频比例+铺满 -->
-                <div class="youtube-video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
             </div>
         </div>
     </section>
