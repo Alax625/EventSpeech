@@ -820,43 +820,30 @@
     <!-- 7. Figure 轮播 - 学术化展示 -->
     <section class="mb-12">
         <div class="content-container">
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Quantitative Results</h2>
-        <div id="tableCarousel" class="carousel-container">
-            <button class="carousel-btn carousel-btn-left" onclick="moveTableSlide(-1)">
-                <i class="fa-solid fa-chevron-left"></i>
-            </button>
-            <div class="carousel-slides" id="tableSlides">
-                <!-- 所有轮播项保持原有结构，仅修改carousel-slide样式 -->
-                <div class="carousel-slide">
-                    <img src="Images/Table/1.png" alt="Table 1" class="rounded">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Qualitative Results</h2>
+            <div id="figureCarousel" class="carousel-container">
+                <button class="carousel-btn carousel-btn-left" onclick="moveSlide(-1)">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="carousel-slides" id="figureSlides">
+                    <div class="carousel-slide">
+                        <img src="Images/Figure/1.png" alt="Figure 1" class="w-full rounded">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="Images/Figure/2.png" alt="Figure 2" class="w-full rounded">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="Images/Figure/3.png" alt="Figure 3" class="w-full rounded">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="Images/Figure/4.png" alt="Figure 4" class="w-full rounded">
+                    </div>
                 </div>
-                <div class="carousel-slide">
-                    <img src="Images/Table/2.png" alt="Table 2" class="rounded">
-                </div>
-                <div class="carousel-slide">
-                    <img src="Images/Table/3.png" alt="Table 3" class="rounded">
-                </div>
-                <div class="carousel-slide">
-                    <img src="Images/Table/4.png" alt="Table 4" class="rounded">
-                </div>
-                <div class="carousel-slide">
-                    <img src="Images/Table/5.png" alt="Table 5" class="rounded">
-                </div>
-                <div class="carousel-slide">
-                    <img src="Images/Table/6.png" alt="Table 6" class="rounded">
-                </div>
-                <div class="carousel-slide">
-                    <img src="Images/Table/7.png" alt="Table 7" class="rounded">
-                </div>
-                <div class="carousel-slide">
-                    <img src="Images/Table/8.png" alt="Table 8" class="rounded">
-                </div>
+                <button class="carousel-btn carousel-btn-right" onclick="moveSlide(1)">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
             </div>
-            <button class="carousel-btn carousel-btn-right" onclick="moveTableSlide(1)">
-                <i class="fa-solid fa-chevron-right"></i>
-            </button>
         </div>
-    </div>
     </section>
 
     <!-- 8. Table 轮播 - 学术化展示 -->
