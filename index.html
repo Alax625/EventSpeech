@@ -196,11 +196,37 @@
             border-radius: 0.75rem;
             box-shadow: 0 3px 10px rgba(0,0,0,0.08); /* 优化阴影 */
         }
-        /* Table轮播图适配 */
-        #tableSlides .carousel-slide img {
-            max-height: 450px;
-            margin: 2rem auto !important;
-        }
+       /* 轮播容器样式 */
+.carousel-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-slides {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  width: 100%;
+  /* 关键：让容器高度自适应内容 */
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* 移除默认内边距 */
+}
+
+/* 所有轮播图统一样式 */
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* 完整显示图片，不裁剪，保持比例 */
+  border-radius: 0.5rem;
+  display: block; /* 消除图片底部间隙 */
+}
         /* 轮播按钮：清新自然的风格 */
         .carousel-btn {
             position: absolute !important;
@@ -822,43 +848,40 @@
 
     <!-- 8. Table 轮播 - 学术化展示 -->
     <section class="mb-12">
-        <div class="content-container">
-            <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Quantitative Results</h2>
-            <div id="tableCarousel" class="carousel-container">
-                <button class="carousel-btn carousel-btn-left" onclick="moveTableSlide(-1)">
-                    <i class="fa-solid fa-chevron-left"></i>
-                </button>
-                <div class="carousel-slides" id="tableSlides">
-                    <div class="carousel-slide">
-                        <img src="Images/Table/1.png" alt="Table 1" class="w-full rounded">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="Images/Table/2.png" alt="Table 2" class="w-full rounded">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="Images/Table/3.png" alt="Table 3" class="w-full rounded">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="Images/Table/4.png" alt="Table 4" class="w-full rounded">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="Images/Table/5.png" alt="Table 5" class="w-full rounded">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="Images/Table/6.png" alt="Table 6" class="w-full rounded">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="Images/Table/7.png" alt="Table 7" class="w-full h-auto object-cover rounded">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="Images/Table/8.png" alt="Table 8" class="w-full h-auto object-cover rounded">
-                    </div>
-                </div>
-                <button class="carousel-btn carousel-btn-right" onclick="moveTableSlide(1)">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
-            </div>
-        </div>
+       <div id="tableCarousel" class="carousel-container">
+  <button class="carousel-btn carousel-btn-left" onclick="moveTableSlide(-1)">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+  <div class="carousel-slides" id="tableSlides">
+    <div class="carousel-slide">
+      <img src="Images/Table/1.png" alt="Table 1" class="rounded">
+    </div>
+    <div class="carousel-slide">
+      <img src="Images/Table/2.png" alt="Table 2" class="rounded">
+    </div>
+    <div class="carousel-slide">
+      <img src="Images/Table/3.png" alt="Table 3" class="rounded">
+    </div>
+    <div class="carousel-slide">
+      <img src="Images/Table/4.png" alt="Table 4" class="rounded">
+    </div>
+    <div class="carousel-slide">
+      <img src="Images/Table/5.png" alt="Table 5" class="rounded">
+    </div>
+    <div class="carousel-slide">
+      <img src="Images/Table/6.png" alt="Table 6" class="rounded">
+    </div>
+    <div class="carousel-slide">
+      <img src="Images/Table/7.png" alt="Table 7" class="rounded">
+    </div>
+    <div class="carousel-slide">
+      <img src="Images/Table/8.png" alt="Table 8" class="rounded">
+    </div>
+  </div>
+  <button class="carousel-btn carousel-btn-right" onclick="moveTableSlide(1)">
+    <i class="fa-solid fa-chevron-right"></i>
+  </button>
+</div>
     </section>
 
     <!-- 页面底注 -->
