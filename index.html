@@ -256,6 +256,34 @@
             line-height: 1;
         }
 
+        /* ========== 新增：轮播圆点指示器样式 ========== */
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 998;
+        }
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(49, 151, 149, 0.3); /* 淡青色 */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        .carousel-dot.active {
+            background-color: var(--color-accent); /* 主色填充 */
+            transform: scale(1.2); /* 选中状态放大 */
+            border-color: rgba(255, 255, 255, 0.8); /* 白色边框 */
+        }
+        .carousel-dot:hover {
+            background-color: rgba(49, 151, 149, 0.6); /* hover加深 */
+        }
+
         /* 卡片样式：清新学术化卡片 */
         .card-academic {
             background-color: var(--color-card);
@@ -812,7 +840,7 @@
         </div>
     </section>
 
-    <!-- 7. Figure 轮播 - 学术化展示 -->
+    <!-- 7. Figure 轮播 - 学术化展示（新增圆点指示器） -->
     <section class="mb-12">
         <div class="content-container">
             <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Qualitative Results</h2>
@@ -837,11 +865,13 @@
                 <button class="carousel-btn carousel-btn-right" onclick="moveSlide(1)">
                     <i class="fa-solid fa-chevron-right"></i>
                 </button>
+                <!-- 新增：Figure轮播圆点指示器容器 -->
+                <div id="figureDots" class="carousel-dots"></div>
             </div>
         </div>
     </section>
 
-    <!-- 8. Table 轮播 - 学术化展示 -->
+    <!-- 8. Table 轮播 - 学术化展示（新增圆点指示器） -->
    <section class="mb-12">
     <div class="content-container">
         <h2 class="text-2xl font-bold mb-4 text-gray-900 section-title">Quantitative Results</h2>
@@ -879,6 +909,8 @@
             <button class="carousel-btn carousel-btn-right" onclick="moveTableSlide(1)">
                 <i class="fa-solid fa-chevron-right"></i>
             </button>
+            <!-- 新增：Table轮播圆点指示器容器 -->
+            <div id="tableDots" class="carousel-dots"></div>
         </div>
     </div>
 </section>
@@ -891,20 +923,75 @@
     </footer>
 
     <script>
-        // ========== Figure 轮播（无缝循环 + 自动播放）==========
+        // ========== Figure 轮播（无缝循环 + 自动播放 + 圆点指示器）==========
         let slideIndex = 0;
         const figureSlides = document.getElementById('figureSlides');
         const totalFigureSlides = figureSlides ? figureSlides.querySelectorAll('.carousel-slide').length : 0;
         let figureAutoPlayTimer; // 自动播放定时器
+        const figureDotsContainer = document.getElementById('figureDots');
 
-        // 初始化：复制第一份slide到末尾，实现无缝循环
+        // 初始化：复制第一份slide到末尾，实现无缝循环 + 生成圆点指示器
         function initFigureCarousel() {
             if (!figureSlides || totalFigureSlides === 0) return;
             
+            // 生成圆点指示器
+            createFigureDots();
+            
+            // 复制第一份slide到末尾，实现无缝循环
             const firstSlide = figureSlides.querySelector('.carousel-slide').cloneNode(true);
             figureSlides.appendChild(firstSlide);
+            
+            // 更新圆点激活状态
+            updateFigureDotActive();
+            
             // 启动自动播放（5秒轮播）
             startFigureAutoPlay();
+        }
+
+        // 生成Figure轮播圆点指示器
+        function createFigureDots() {
+            if (!figureDotsContainer || totalFigureSlides === 0) return;
+            
+            // 清空原有圆点
+            figureDotsContainer.innerHTML = '';
+            
+            // 为每个slide创建一个圆点
+            for (let i = 0; i < totalFigureSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
+                dot.setAttribute('data-index', i);
+                
+                // 点击圆点切换到对应slide
+                dot.addEventListener('click', function() {
+                    slideIndex = parseInt(this.getAttribute('data-index'));
+                    figureSlides.style.transition = 'transform 0.6s ease-in-out';
+                    figureSlides.style.transform = `translateX(-${slideIndex * 100}%)`;
+                    updateFigureDotActive();
+                    stopFigureAutoPlay();
+                    startFigureAutoPlay();
+                });
+                
+                figureDotsContainer.appendChild(dot);
+            }
+        }
+
+        // 更新Figure圆点激活状态
+        function updateFigureDotActive() {
+            if (!figureDotsContainer || totalFigureSlides === 0) return;
+            
+            // 获取所有圆点
+            const dots = figureDotsContainer.querySelectorAll('.carousel-dot');
+            // 计算当前激活的索引（处理无缝循环的最后一张）
+            const activeIndex = slideIndex >= totalFigureSlides ? 0 : slideIndex < 0 ? totalFigureSlides - 1 : slideIndex;
+            
+            // 更新激活状态
+            dots.forEach((dot, index) => {
+                if (index === activeIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
         }
 
         // 切换轮播（核心无缝逻辑）
@@ -924,6 +1011,7 @@
                     figureSlides.style.transition = 'none'; // 关闭动画
                     slideIndex = 0;
                     figureSlides.style.transform = `translateX(0)`;
+                    updateFigureDotActive(); // 更新圆点状态
                 }, 600); // 等待动画结束后重置
             }
             // 第一张←最后一张（无回退动画）
@@ -936,6 +1024,9 @@
                     figureSlides.style.transition = 'transform 0.6s ease-in-out';
                 }, 0);
             }
+            
+            // 更新圆点激活状态
+            updateFigureDotActive();
 
             // 重置自动播放（手动操作后，5秒后继续自动轮播）
             startFigureAutoPlay();
@@ -958,19 +1049,75 @@
             }
         }
 
-        // ========== Table 轮播（无缝循环 + 自动播放）==========
+        // ========== Table 轮播（无缝循环 + 自动播放 + 圆点指示器）==========
         let tableSlideIndex = 0;
         const tableSlides = document.getElementById('tableSlides');
         const totalTableSlides = tableSlides ? tableSlides.querySelectorAll('.carousel-slide').length : 0;
         let tableAutoPlayTimer;
+        const tableDotsContainer = document.getElementById('tableDots');
 
-        // 初始化Table轮播
+        // 初始化Table轮播 + 生成圆点指示器
         function initTableCarousel() {
             if (!tableSlides || totalTableSlides === 0) return;
             
+            // 生成圆点指示器
+            createTableDots();
+            
+            // 复制第一份slide到末尾，实现无缝循环
             const firstSlide = tableSlides.querySelector('.carousel-slide').cloneNode(true);
             tableSlides.appendChild(firstSlide);
+            
+            // 更新圆点激活状态
+            updateTableDotActive();
+            
+            // 启动自动播放
             startTableAutoPlay();
+        }
+
+        // 生成Table轮播圆点指示器
+        function createTableDots() {
+            if (!tableDotsContainer || totalTableSlides === 0) return;
+            
+            // 清空原有圆点
+            tableDotsContainer.innerHTML = '';
+            
+            // 为每个slide创建一个圆点
+            for (let i = 0; i < totalTableSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
+                dot.setAttribute('data-index', i);
+                
+                // 点击圆点切换到对应slide
+                dot.addEventListener('click', function() {
+                    tableSlideIndex = parseInt(this.getAttribute('data-index'));
+                    tableSlides.style.transition = 'transform 0.6s ease-in-out';
+                    tableSlides.style.transform = `translateX(-${tableSlideIndex * 100}%)`;
+                    updateTableDotActive();
+                    stopTableAutoPlay();
+                    startTableAutoPlay();
+                });
+                
+                tableDotsContainer.appendChild(dot);
+            }
+        }
+
+        // 更新Table圆点激活状态
+        function updateTableDotActive() {
+            if (!tableDotsContainer || totalTableSlides === 0) return;
+            
+            // 获取所有圆点
+            const dots = tableDotsContainer.querySelectorAll('.carousel-dot');
+            // 计算当前激活的索引（处理无缝循环的最后一张）
+            const activeIndex = tableSlideIndex >= totalTableSlides ? 0 : tableSlideIndex < 0 ? totalTableSlides - 1 : tableSlideIndex;
+            
+            // 更新激活状态
+            dots.forEach((dot, index) => {
+                if (index === activeIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
         }
 
         // Table切换逻辑
@@ -988,6 +1135,7 @@
                     tableSlides.style.transition = 'none';
                     tableSlideIndex = 0;
                     tableSlides.style.transform = `translateX(0)`;
+                    updateTableDotActive(); // 更新圆点状态
                 }, 600);
             }
             if (tableSlideIndex < 0) {
@@ -998,6 +1146,9 @@
                     tableSlides.style.transition = 'transform 0.6s ease-in-out';
                 }, 0);
             }
+            
+            // 更新圆点激活状态
+            updateTableDotActive();
 
             startTableAutoPlay();
         }
